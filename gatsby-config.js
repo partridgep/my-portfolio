@@ -5,6 +5,13 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  siteMetadata: {
+    title: "Paul Partridge",
+    author: "Paul Partridge",
+    keywords: "web developer, software engineer, web designer, full-stack developer"
+  },
+  plugins: [
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-react-helmet-async`
+  ],
 }

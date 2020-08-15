@@ -1,0 +1,14 @@
+.Footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    background-color: grey;
+
+    section {
+        a {
+            margin-left: .5rem;
+            color: black;
+        }
+    }
+}
