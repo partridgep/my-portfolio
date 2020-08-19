@@ -8,6 +8,8 @@ import Footer from '../Footer'
 
 import '../../styles/reset.scss'
 import styles from './Layout.module.scss'
+require("typeface-alata")
+require("typeface-amatic-sc")
 
 export default function Layout({ pageTitle, children }) {
 
@@ -31,7 +33,10 @@ export default function Layout({ pageTitle, children }) {
                 keywords={data.site.siteMetadata.keywords}      
             />
             <div className={styles.Layout}>
-                <Header title={data.site.siteMetadata.title} />
+                <Header 
+                    title={data.site.siteMetadata.title} 
+                    size={!pageTitle ? "big" : "small"}
+                    />
                 <main>
                     {children}
                 </main>

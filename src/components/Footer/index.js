@@ -8,8 +8,8 @@ export default function Footer() {
     return (
         <footer className={styles.Footer}>
             <section>
-                <a href="https://github.com/partridgep" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub} /></a>
-                <a href="https://www.linkedin.com/in/partridgepaul/" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faLinkedin} /></a>
+                <a href="https://github.com/partridgep" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub} aria-label="Github"/></a>
+                <a href="https://www.linkedin.com/in/partridgepaul/" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faLinkedin} aria-label="LinkedIn"/></a>
             </section>
         </footer>
     )
