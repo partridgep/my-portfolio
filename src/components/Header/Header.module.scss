@@ -18,9 +18,14 @@
     height: 100vh;
     min-height: 115px;
 
+    div {
+        max-width: 600px;
+        margin: 0 auto 0 50%;
+        transform: translateX(-50%);
+    }
+
     h1 {
         overflow:hidden;
-        margin: 0 auto 0 50%;
         font-weight: 600; 
         color: #FFFFD9;  
         font-family: 'Helvetica'; 
@@ -29,15 +34,13 @@
         text-transform: uppercase;
         line-height: 60px;
         padding: 40px;
-        transform: translateX(-50%);
         animation: elongate 2s;
         z-index: 99;
         position: relative;
         height: 200px;
         width: 600px;
-        display: flex;
-        align-self: flex-start;
     }
+
 
     h2 {
         width: 70vw;
@@ -48,7 +51,6 @@
         position: relative;
         z-index: -5;
         
-
         span {
             text-transform: uppercase;
             display: inline-block;
@@ -63,7 +65,6 @@
             from { transform: rotate(0deg) translateX(3px) rotate(0deg); }
             to   { transform: rotate(360deg) translateX(3px) rotate(-360deg); }
         }
-
     }
 
     .big {
@@ -77,7 +78,6 @@
             text-shadow: makelongshadow(#FF6138);
         }
     }
-
 
     nav {
         align-items: flex-start;
@@ -120,6 +120,8 @@
 @media(max-width: 832px) {
 
     .Header {
+        min-height: 70px;
+
         h1 {
             font-size: 40px;
             line-height: 34px;
@@ -142,6 +144,7 @@
                 font-size: 23px;
                 margin: 3%;
                 width: 100%;
+                z-index: -1;
             }
             button::before {
                 width: 95%;

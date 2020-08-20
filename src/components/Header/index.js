@@ -36,12 +36,14 @@ export default function Header({ title, size }) {
 
         // Now manipulate DOM with defined values above
         const title = document.querySelector("#title");
+        const title_container = document.querySelector("#title_container");
         title.style.fontSize = `${fontSize}px`;
         title.style.height = `${height}px`;
         title.style.lineHeight = `${lineHeight}px`;
         title.style.padding = `${padding}px`;
         title.style.width = `${width}px`;
-        title.style.marginLeft = `calc(50% - ${margin}%)`;
+        title_container.style.width = `${width}px`;
+        title_container.style.marginLeft = `calc(50% - ${margin}%)`;
 
         const header = document.querySelector("#header");
         header.style.height = `${totalHeight}vh`;
@@ -50,7 +52,7 @@ export default function Header({ title, size }) {
         const nav = document.querySelector("nav");
         const buttons = document.querySelectorAll("nav > a > button");
         // fade nav and subtitle out of view
-        // subtitle.style.opacity = `${Math.max(0, 100 - idx * 5)}%`;
+        subtitle.style.opacity = `${Math.max(0, 100 - idx * 5)}%`;
         nav.style.opacity = `${Math.max(0, 100 - idx * 5)}%`;
         // remove from DOM once past certain index 
         if (idx > 30 && idx < 60) {
@@ -82,6 +84,77 @@ export default function Header({ title, size }) {
         }
     }
 
+    // update DOM header values for mobile
+    function updateHeaderMobile(idx) {
+
+        // total height of header
+        let totalHeight = Math.max(1, 100 - idx );
+        // title height 
+        let height = Math.max(70, 130 - idx);
+        // title font size
+        let fontSize = Math.max(20, 40 - idx / 3);
+        // title line height
+        let lineHeight = Math.max(20, 34 - idx / 3);
+        // title padding
+        let padding = Math.max(20, 40 - idx / 2);
+        // title width
+        let width = Math.max(160, 350 - idx * 3);
+        // title left margin
+        let margin = Math.max(0, idx / 3.2);
+
+
+        // Now manipulate DOM with defined values above
+        const title = document.querySelector("#title");
+        const title_container = document.querySelector("#title_container");
+        title.style.fontSize = `${fontSize}px`;
+        title.style.height = `${height}px`;
+        title.style.lineHeight = `${lineHeight}px`;
+        title.style.padding = `${padding}px`;
+        title.style.width = `${width}px`;
+        title_container.style.width = `${width}px`;
+        title_container.style.marginLeft = `calc(50% - ${margin}%)`;
+
+        const header = document.querySelector("#header");
+        header.style.height = `${totalHeight}vh`;
+
+        const subtitle = document.querySelector("#subtitle");
+        const nav = document.querySelector("nav");
+        const buttons = document.querySelectorAll("nav > a > button");
+        // fade nav and subtitle out of view
+        subtitle.style.opacity = `${Math.max(0, 100 - idx * 5)}%`;
+        nav.style.opacity = `${Math.max(0, 100 - idx * 5)}%`;
+        // remove from DOM once past certain index 
+        if (idx > 30 && idx < 60) {
+            subtitle.style.display = "none";
+            nav.style.display = "none";
+        } else if (idx < 30) {
+            subtitle.style.display = "block";
+            nav.style.display = "block";
+            nav.style.margin = "20px 0 10vh 0";
+            nav.style.position = "relative";
+            nav.style.top = "0";
+            nav.style.right = "0";
+            buttons.forEach(button => {
+                button.style.fontSize = "23px";
+                button.style.margin = "3%";
+            })
+        // reintroduce nav buttons to right of header
+        } else if (idx > 60) {
+            nav.style.display = "flex";
+            nav.style.alignItems = "flex-end";
+            nav.style.flexDirection = "row";
+            nav.style.margin = "0";
+            nav.style.position = "absolute";
+            nav.style.top = "35%";
+            nav.style.right = "2%";
+            nav.style.opacity = `${(idx - 60) * 5}%`;
+            buttons.forEach(button => {
+                button.style.fontSize = "13px";
+                button.style.margin = "0";
+            })
+        }
+    }
+
     // once header is loaded, set up scrolling listener
     useEffect(() => {    
 
@@ -107,6 +180,7 @@ export default function Header({ title, size }) {
             if (window.innerWidth < breakpoint) {
                 console.log("small");
                 //update header MOBILE VERSION
+                updateHeaderMobile(frameIndex / 2);
             }
             else {
                 console.log("big");
@@ -118,7 +192,7 @@ export default function Header({ title, size }) {
 
     return(
         <header id = "header" className={styles.Header} style={{height: `100vh`}}>
-                <h1 id = "title">{title}</h1>
+                <div id="title_container"><h1 id = "title">{title}</h1></div>
                 <h2 id="subtitle" >
                     Full-Stack Software Engineer chasing the <span>endorphin</span> rush that comes from merging the <span>creative</span> and the <span>logical</span> to effectively problem-solve
                 </h2>
