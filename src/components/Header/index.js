@@ -1,138 +1,131 @@
-import React, {useState, useEffect} from 'react'
-
-import { Link } from 'gatsby'
+import React, { useEffect } from 'react'
 
 import styles from './Header.module.scss'
 
-
 export default function Header({ title, size }) {
 
-    const [style, setStyle] = useState({
-        totalHeight: 100,
-        height: 200,
-        fontSize: 80,
-        lineHeight: 60,
-        padding: 40,
-        width: 600,
-        autoMargin: null
-    })
+    // for media queries, max window width
+    const breakpoint = 832
 
-    useEffect(() => {
-        setStyle({
-            totalHeight: 100,
-            height: 200,
-            fontSize: 80,
-            lineHeight: 60,
-            padding: 40,
-            width: 600,
-            autoMargin: getAutoMargin()
-        });
-    }, [])
+    // total # of frames we will run through
+    const frameCount = 200
 
-    function getAutoMargin() {
-        if (document.querySelector("#title")) return document.querySelector("#title").getBoundingClientRect().left;
-    }
-
-    const frameCount = 200;
-
+    // update header in DOM based on current frame (index)
     function updateHeader(idx) {
 
-        console.log(idx);
+        // Get unit values for DOM manipulation:
+        // a) set up minimum value
+        // b) substract value proportional to current frame from max value
+        // c) select max from two values
 
-        let minTotalHeight = 1;
-        let totalHeight = Math.max(minTotalHeight, 100 - idx );
-    
-        let minHeight = 115;
-        let height = Math.max(minHeight, 200 - idx);
-    
-        let minFontSize = 40;
-        let fontSize = Math.max(minFontSize, 80 - idx / 2);
+        // total height of header
+        let totalHeight = Math.max(1, 100 - idx );
+        // title height 
+        let height = Math.max(115, 200 - idx);
+        // title font size
+        let fontSize = Math.max(40, 80 - idx / 2);
+        // title line height
+        let lineHeight = Math.max(30, 60 - idx / 3);
+        // title padding
+        let padding = Math.max(20, 40 - idx / 2);
+        // title width
+        let width = Math.max(350, 600 - idx * 3);
+        // title left margin
+        let margin = Math.max(0, idx / 3.5);
 
-        let minLineHeight = 30;
-        let lineHeight = Math.max(minLineHeight, 60 - idx / 3);
 
-        let minPadding = 20;
-        let padding = Math.max(minPadding, 40 - idx / 2);
-
-        let minWidth = 350;
-        let width = Math.max(minWidth, 600 - idx * 3);
-
-        
-        
-        // SOLUTION IN STATE
-        // setStyle({height, fontSize, lineHeight, padding, width});
-        
-        // SOLUTION WITH VANILLA JS
+        // Now manipulate DOM with defined values above
         const title = document.querySelector("#title");
         title.style.fontSize = `${fontSize}px`;
         title.style.height = `${height}px`;
         title.style.lineHeight = `${lineHeight}px`;
         title.style.padding = `${padding}px`;
         title.style.width = `${width}px`;
-
-        // PROBLEM: RETURN TO AUTO MARGINs
-        let minMargin = 0;
-        let autoMargin = style.autoMargin;
-        let margin = Math.max(minMargin, autoMargin - idx * 6);
-        title.style.marginLeft = `${margin}px`;
+        title.style.marginLeft = `calc(50% - ${margin}%)`;
 
         const header = document.querySelector("#header");
         header.style.height = `${totalHeight}vh`;
 
         const subtitle = document.querySelector("#subtitle");
         const nav = document.querySelector("nav");
-        subtitle.style.opacity = `${Math.max(0, 100 - idx * 5)}%`;
+        const buttons = document.querySelectorAll("nav > a > button");
+        // fade nav and subtitle out of view
+        // subtitle.style.opacity = `${Math.max(0, 100 - idx * 5)}%`;
         nav.style.opacity = `${Math.max(0, 100 - idx * 5)}%`;
-        if (idx > 30) {
+        // remove from DOM once past certain index 
+        if (idx > 30 && idx < 60) {
             subtitle.style.display = "none";
             nav.style.display = "none";
-        } else {
+        } else if (idx < 30) {
             subtitle.style.display = "block";
             nav.style.display = "block";
+            nav.style.margin = "20px 0 10vh 0";
+            nav.style.position = "relative";
+            nav.style.top = "0";
+            nav.style.right = "0";
+            buttons.forEach(button => {
+                button.style.fontSize = "35px";
+                button.style.margin = "0 50px";
+            })
+        // reintroduce nav buttons to right of header
+        } else if (idx > 60) {
+            nav.style.display = "flex";
+            nav.style.margin = "0";
+            nav.style.position = "absolute";
+            nav.style.top = "35%";
+            nav.style.right = "50px";
+            nav.style.opacity = `${(idx - 60) * 5}%`;
+            buttons.forEach(button => {
+                button.style.fontSize = "20px";
+                button.style.margin = "0";
+            })
         }
-
     }
 
+    // once header is loaded, set up scrolling listener
     useEffect(() => {    
 
         window.addEventListener('scroll', () => {  
+            // current scroll index
             const scrollTop = window.scrollY;
-            console.log(`scrollTop: ${scrollTop}`);
-            console.log(`scrollHeight: ${document.documentElement.scrollHeight}`);
+            // console.log(`scrollTop: ${scrollTop}`);
+            // console.log(`scrollHeight: ${document.documentElement.scrollHeight}`);
+            // total amount of scroll available
             const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
-            console.log(`maxScrollTop: ${maxScrollTop}`);
+            // console.log(`maxScrollTop: ${maxScrollTop}`);
+            // how much has been scrolled from 0 to 1
             const scrollFraction = scrollTop / maxScrollTop;
-            console.log(`scrollFraction: ${scrollFraction}`);
+            // console.log(`scrollFraction: ${scrollFraction}`);
+            // get corresponding frame # based on scroll fraction
             const frameIndex = Math.min(
               frameCount - 1,
               Math.ceil(scrollFraction * frameCount)
             );
-            console.log(`frameIndex: ${frameIndex}`)
-            console.log("_____________");
+            // console.log(`frameIndex: ${frameIndex}`)
+            // console.log("_____________");
             
-            updateHeader(frameIndex / 2);
+            if (window.innerWidth < breakpoint) {
+                console.log("small");
+                //update header MOBILE VERSION
+            }
+            else {
+                console.log("big");
+                // update header in DOM based on current frame index
+                updateHeader(frameIndex / 2);
+            }
         })
     })
 
     return(
         <header id = "header" className={styles.Header} style={{height: `100vh`}}>
-                <h1 
-                    id = "title"
-                    style={{
-                        height: style.height,
-                        fontSize: style.fontSize,
-                        lineHeight: `${style.lineHeight}px`,
-                        padding: style.padding,
-                        width: style.width
-                    }}
-                >{title}</h1>
+                <h1 id = "title">{title}</h1>
                 <h2 id="subtitle" >
                     Full-Stack Software Engineer chasing the <span>endorphin</span> rush that comes from merging the <span>creative</span> and the <span>logical</span> to effectively problem-solve
                 </h2>
             <nav>
-                <Link to="/#robot-culture"><button>My Work</button></Link>
-                <Link to="/#about"><button>About</button></Link>
-                <Link to="/#contact"><button>Contact Me</button></Link>
+                <a href="/#work"><button>My Work</button></a>
+                <a href="/#about"><button>About</button></a>
+                <a href="/#contact"><button>Contact Me</button></a>
             </nav>
         </header>
     )
