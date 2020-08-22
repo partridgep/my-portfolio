@@ -4,7 +4,8 @@ import {useStaticQuery, graphql} from 'gatsby'
 
 import Header from '../Header'
 import Head from '../Head'
-import Footer from '../Footer'
+
+import projects from '../../content/projects'
 
 import '../../styles/reset.scss'
 import styles from './Layout.module.scss'
@@ -29,10 +30,12 @@ export default function Layout({ pageTitle, children }) {
     const breakpoint = 832
 
     // total # of frames we will run through
-    const frameCount = 1000
+    const frameCount = 600 + 400 * projects.length
 
     // update header in DOM based on current frame (index)
     function updateHeader(idx) {
+
+        if (idx > 100) idx = 100;
 
         // Get unit values for DOM manipulation:
         // a) set up minimum value
@@ -53,7 +56,6 @@ export default function Layout({ pageTitle, children }) {
         let width = Math.max(350, 600 - idx * 3);
         // title left margin
         let margin = Math.max(0, idx / 3.5);
-
 
         // Now manipulate DOM with defined values above
         const title = document.querySelector("#title");
@@ -105,8 +107,83 @@ export default function Layout({ pageTitle, children }) {
         }
     }
 
+    // update DOM projects
+    function updateProject(frame, id) {
+
+        const lowestIdx = 350 * (id - 1);
+        const highestIdx = lowestIdx + 350;
+        const idx = (frame - 160);
+
+        console.log(`idx: ${idx}`);
+        console.log(`lowestIdx for ${id}: ${lowestIdx}`);
+        console.log(`highestIdx for ${id}: ${highestIdx}`);
+        console.log(`Project idx for ${id}: ${idx}`);
+
+        const project = document.querySelector(`#project${id}`);
+
+        if (idx < lowestIdx || idx > highestIdx) {
+            project.style.display = "none";
+        }
+
+        else if (idx > lowestIdx) {
+            project.style.display = "flex";
+            project.style.opacity = `${idx - lowestIdx}%`;
+        }
+
+        if (idx > highestIdx - 175 && idx <= highestIdx) {
+            const opacity = ((highestIdx - idx - lowestIdx) + (350 * (id - 1)));
+            console.log(`opacity for ${id}: ${opacity}`);
+            project.style.opacity = `${Math.max(0, opacity )}%`;
+        }
+    }
+
+    // update DOM about section 
+    function updateAbout(frame) {
+
+        const about = document.querySelector("#about");
+
+        const lowestIdx = 350 * projects.length;
+        const highestIdx = lowestIdx + 350;
+        const idx = (frame - 160);
+
+        if (idx < lowestIdx || idx > highestIdx) {
+            about.style.display = "none";
+        }
+
+        else if (idx > lowestIdx) {
+            about.style.display = "flex";
+            about.style.opacity = `${idx - lowestIdx}%`;
+        }
+
+        if (idx > highestIdx - 175 && idx <= highestIdx) {
+            const opacity = ((highestIdx - idx - lowestIdx) + (350 * (projects.length)));
+            // console.log(`opacity for ${id}: ${opacity}`);
+            about.style.opacity = `${Math.max(0, opacity )}%`;
+        }
+    }
+
+    function updateContact(frame) {
+
+        const contact = document.querySelector('#contact');
+
+        const lowestIdx = 350 * (projects.length + 1);
+        const idx = (frame - 160);
+
+        if (idx < lowestIdx) {
+            contact.style.display = "none";
+        }
+
+        else if (idx > lowestIdx) {
+            contact.style.display = "flex";
+            contact.style.opacity = `${idx - lowestIdx}%`;
+        }
+
+    }
+
     // update DOM header values for mobile
     function updateHeaderMobile(idx) {
+
+        if (idx > 100) idx = 100;
 
         // total height of header
         let totalHeight = Math.max(1, 100 - idx );
@@ -202,14 +279,21 @@ export default function Layout({ pageTitle, children }) {
     function render() {
 
         let frameIndex = getFrameIndex();
+        console.log(frameIndex);
             
             if (window.innerWidth < breakpoint) {
                 //update header MOBILE VERSION
-                updateHeaderMobile(frameIndex / 10);
+                updateHeaderMobile(frameIndex / 2 );
             }
             else {
                 // update header in DOM based on current frame index
-                updateHeader(frameIndex / 10);
+                updateHeader(frameIndex / 2);
+                // update project components in DOM
+                for (let project of projects) {
+                    updateProject(frameIndex, project.id)
+                }
+                updateAbout(frameIndex);
+                updateContact(frameIndex);
             }
     }
 
@@ -238,7 +322,7 @@ export default function Layout({ pageTitle, children }) {
                 <main>
                     {children}
                 </main>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </Fragment>
     )

@@ -1,0 +1,40 @@
+.About {
+    position: fixed;
+    height: calc(100vh - 115px);
+    top: 115px;
+    left: 0;
+    width: 94vw;
+    // display: flex;
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    max-width: 50vw;
+    font-family: Alata;
+
+    h1 {
+        color: #00627a;
+    }
+}
+
+.portrait {
+    display: flex;
+    align-items: center;
+    width: 30vw;
+    height: max-content;
+    margin: 0 1% 0 40px;
+    padding: 0;
+
+    img {
+        margin: 0;
+        padding: 0;
+        border: 3px solid rgba(#00627a, 0.5);
+        border-radius: 10px;
+        transition: opacity 0.1s;
+    }
+}

@@ -4,25 +4,20 @@ import { Link } from 'gatsby'
 
 import styles from './WorkProject.module.scss'
 
-export default function WorkProject( {project} ) {
+export default function WorkProject( {name, id, description, mainScreenshot, secondaryScreenshot} ) {
 
-    function showHoverImage() {
-        // change project image on hover
-        console.log('hover');
-    }
+    const link = name.toLowerCase().replace(/\s/g, "-")
 
     return(
-        <div id="project" className={styles.WorkProject}>
+        <div id={`project${id}`} key={id} className={styles.WorkProject}>
             <div>
-                <h1 id="project_name" >Robot Culture</h1>
-                <h2 id="description" >
-                A <span>MERN React.js</span> responsive and Web Progressive App to access a <span>cloud-deployed database</span> of robots from pop-culture, with <span>CRUD features</span> for signed-in users and admins.
-                </h2>
-                <button><Link to="/robot-culture">Learn More</Link></button>
+                <h1 id={`project_name${id}`}>{name}</h1>
+                {description}
+                <button><Link to={link}>Learn More</Link></button>
             </div>
                 <div className={styles.ProjectImage} >
-                    {/* // style={{backgroundImage: "url('https://i.imgur.com/BfmXBS6.jpg')"}}> */}
-                    <img src="https://i.imgur.com/BfmXBS6.jpg" alt="main page screenshot" onMouseOver={showHoverImage}/>
+                    <img src={mainScreenshot} alt="main page screenshot" />
+                    <img src={secondaryScreenshot} alt="secondary page screenshot"/>
                 </div>
         </div>
     )

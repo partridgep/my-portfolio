@@ -1,0 +1,40 @@
+.Contact {
+    position: fixed;
+    height: calc(100vh - 115px);
+    top: 115px;
+    left: 0;
+    width: 100vw;
+    // display: flex;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    font-family: Alata;
+
+    div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            margin: 5vh 0;
+            font-size: 40px;
+            transition: all 0.2s;
+
+            p {
+                display: inline;
+                
+                margin-left: 15px;
+            }
+        }
+
+        a:hover {
+            font-size: 41px;
+            color: #00627a;
+        }
+    }
+}
