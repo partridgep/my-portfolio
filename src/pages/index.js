@@ -11,7 +11,7 @@ import projects from '../content/projects'
 export default function Home() {
 
   const projectComponents = projects.map(project =>
-    <div>
+    <div key={project.id}>
       <ScrollSpace />
       <WorkProject 
         name = {project.name}
@@ -28,6 +28,7 @@ export default function Home() {
       <Layout>
         {projectComponents}
       </Layout>
+      <ScrollSpace />
       <About />
       <Contact />
     </div>

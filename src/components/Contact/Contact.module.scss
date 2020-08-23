@@ -27,7 +27,6 @@
 
             p {
                 display: inline;
-                
                 margin-left: 15px;
             }
         }
@@ -35,6 +34,27 @@
         a:hover {
             font-size: 41px;
             color: #00627a;
+        }
+    }
+}
+
+@media(max-width: 832px) {
+
+    .Contact {
+        height: calc(100vh - 70px);
+        top: 70px;
+
+        div {
+            a {
+                max-width: 70vw;
+                font-size: 24px;
+                p{
+                    margin-left: 10px;
+                }
+            }
+            a:hover {
+                font-size: 24.5px;
+            }
         }
     }
 }

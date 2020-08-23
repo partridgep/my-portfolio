@@ -20,8 +20,8 @@ const projects =
         name: "Quarantine Movie Release Schedule",
         id: 3,
         description: <h2 id="description">A <span>Front-End</span> responsive web application that displays a timeline of all movie releases affected by the pandemic using <span>HTML, CSS, JavaScript and jQuery</span> and utilizing data from two <span>movie database APIs</span>.</h2>,
-        mainScreenshot: "https://i.imgur.com/gTPIgIi.jpg",
-        secondaryScreenshot: "https://i.imgur.com/YhqlvqF.jpg"
+        mainScreenshot: "https://i.imgur.com/Fdriz3b.jpg",
+        secondaryScreenshot: "https://i.imgur.com/VdyDqf3.jpg"
         }
     ]
 

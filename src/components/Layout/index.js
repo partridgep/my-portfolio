@@ -114,12 +114,14 @@ export default function Layout({ pageTitle, children }) {
         const highestIdx = lowestIdx + 350;
         const idx = (frame - 160);
 
-        console.log(`idx: ${idx}`);
-        console.log(`lowestIdx for ${id}: ${lowestIdx}`);
-        console.log(`highestIdx for ${id}: ${highestIdx}`);
-        console.log(`Project idx for ${id}: ${idx}`);
+        // console.log(`idx: ${idx}`);
+        // console.log(`lowestIdx for ${id}: ${lowestIdx}`);
+        // console.log(`highestIdx for ${id}: ${highestIdx}`);
+        // console.log(`Project idx for ${id}: ${idx}`);
 
         const project = document.querySelector(`#project${id}`);
+        const projectText = document.querySelector(`#project_${id}_text`);
+        const projectImage = document.querySelector(`#project_${id}_image`);
 
         if (idx < lowestIdx || idx > highestIdx) {
             project.style.display = "none";
@@ -128,11 +130,20 @@ export default function Layout({ pageTitle, children }) {
         else if (idx > lowestIdx) {
             project.style.display = "flex";
             project.style.opacity = `${idx - lowestIdx}%`;
+            project.style.overflowY = "hidden";
+            const xTranslation = idx - lowestIdx - 200;
+            if (xTranslation < 0 ) {
+                projectText.style.transform = `translateX(${xTranslation * -1}px)`;
+                projectImage.style.transform = `translateX(${xTranslation }px)`;
+            }
         }
 
         if (idx > highestIdx - 175 && idx <= highestIdx) {
+            project.style.overflowY = "scroll";
+        }
+
+        if (idx > highestIdx - 75 && idx <= highestIdx) {
             const opacity = ((highestIdx - idx - lowestIdx) + (350 * (id - 1)));
-            console.log(`opacity for ${id}: ${opacity}`);
             project.style.opacity = `${Math.max(0, opacity )}%`;
         }
     }
@@ -153,11 +164,15 @@ export default function Layout({ pageTitle, children }) {
         else if (idx > lowestIdx) {
             about.style.display = "flex";
             about.style.opacity = `${idx - lowestIdx}%`;
+            about.style.overflowY = "hidden";
         }
 
         if (idx > highestIdx - 175 && idx <= highestIdx) {
+            about.style.overflowY = "scroll";
+        }
+
+        if (idx > highestIdx - 75 && idx <= highestIdx) {
             const opacity = ((highestIdx - idx - lowestIdx) + (350 * (projects.length)));
-            // console.log(`opacity for ${id}: ${opacity}`);
             about.style.opacity = `${Math.max(0, opacity )}%`;
         }
     }
@@ -279,7 +294,7 @@ export default function Layout({ pageTitle, children }) {
     function render() {
 
         let frameIndex = getFrameIndex();
-        console.log(frameIndex);
+        // console.log(frameIndex);
             
             if (window.innerWidth < breakpoint) {
                 //update header MOBILE VERSION
@@ -288,13 +303,13 @@ export default function Layout({ pageTitle, children }) {
             else {
                 // update header in DOM based on current frame index
                 updateHeader(frameIndex / 2);
-                // update project components in DOM
-                for (let project of projects) {
-                    updateProject(frameIndex, project.id)
-                }
-                updateAbout(frameIndex);
-                updateContact(frameIndex);
             }
+            // update project components in DOM
+            for (let project of projects) {
+                updateProject(frameIndex, project.id)
+            }
+            updateAbout(frameIndex);
+            updateContact(frameIndex);
     }
 
     // once header is loaded, set up scrolling listener

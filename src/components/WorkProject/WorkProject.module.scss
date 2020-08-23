@@ -8,12 +8,17 @@
     display: none;
     flex-direction: row;
     justify-content: space-around;
-    margin: 3% 0 3% 3%;
+    // margin: 3% 0 3% 3%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
     
     h1, h2 {
         font-family: Alata;
         max-width: 40vw;
         font-weight: 900;
+        box-sizing: border-box;
+        margin-left: 3vw;
     }
 
     h1 {
@@ -21,7 +26,7 @@
         color: #00627a;
         letter-spacing: 10px;
         font-size: 50px;
-        margin: 5vh 0;
+        margin: 8vh 0 5vh 3vw;
     }
 
     h2 {
@@ -36,7 +41,7 @@
     }
 
     button {
-        margin: 3% 0 0 0;
+        margin: 3% 0 1vh 4vh;
         background: radial-gradient(rgb(94, 93, 93), rgb(48, 47, 47));
         border-radius: 15px;
         padding: 5px 8px;
@@ -66,6 +71,7 @@
     min-width: 400px;
     margin: 0 2% 0 40px;
     padding: 0;
+    box-sizing: border-box;
 
     img {
         margin: 0;
@@ -77,7 +83,6 @@
 
     img:nth-child(1):hover {
         opacity:0;
-        
     }
 
     img:nth-child(2) {
@@ -85,6 +90,10 @@
         left: -100%;
         z-index: -1;
     }
+}
+
+.WorkProject::-webkit-scrollbar {
+    display: none;
 }
 
 @media(max-width: 832px) {
