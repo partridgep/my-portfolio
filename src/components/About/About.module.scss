@@ -1,7 +1,7 @@
 .About {
     position: fixed;
-    height: calc(100vh - 115px);
-    min-height: max-content;
+    // height: calc(100vh - 115px);
+    height: 100%;
     top: 115px;
     left: 0;
     width: 100vw;
@@ -55,7 +55,7 @@
         flex-direction: column-reverse;
         width: 100vw;
         top: 70px;
-        height: calc(100vh - 70px);
+        // height: calc(100vh - 70px);
     }
 
     .text {

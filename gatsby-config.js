@@ -11,13 +11,16 @@ module.exports = {
     keywords: "web developer, software engineer, web designer, full-stack developer"
   },
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/images`,
+        name: 'images'
+      }
+    },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-react-helmet-async`
-    // {
-    //   resolve: "gatsby-plugin-typography",
-    //   options: {
-    //     pathToConfigModule: "src/utils/typography.js"
-    //   }
-    // }
+    `gatsby-plugin-react-helmet-async`,
+    `gatsby-transformer-sharp`, 
+    `gatsby-plugin-sharp`
   ],
 }
