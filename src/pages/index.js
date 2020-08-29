@@ -14,11 +14,21 @@ import projects from '../content/projects'
 
 export default function Home(props) {
 
-      // for media queries, max window width
-      const breakpoint = 832
+    // for media queries, max window width
+    const breakpoint = 832
 
-      // total # of frames we will run through
-      const frameCount = 600 + 400 * projects.length
+    // total # of frames we will run through
+    const frameCount = 600 + 400 * projects.length
+
+    // let timer = 0;
+
+    // function setFrameIndex(idx) {
+    //     //need to find scroll top
+    //     const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
+    //     const scrollFraction = idx / frameCount;
+    //     const scrollTop = maxScrollTop * scrollFraction;
+    //     window.scroll({top: scrollTop, behavior: "smooth"});
+    // }
   
       // update header in DOM based on current frame (index)
       function updateHeader(idx) {
@@ -102,14 +112,14 @@ export default function Home(props) {
           const highestIdx = lowestIdx + 350;
           const idx = (frame - 160);
   
-          // console.log(`idx: ${idx}`);
+        //   console.log(`idx: ${idx}`);
           // console.log(`lowestIdx for ${id}: ${lowestIdx}`);
           // console.log(`highestIdx for ${id}: ${highestIdx}`);
           // console.log(`Project idx for ${id}: ${idx}`);
   
           const project = document.querySelector(`#project${id}`);
           const projectText = document.querySelector(`#project_${id}_text`);
-          const projectImage = document.querySelector(`#project_${id}_image`);
+        //   const projectImage = document.querySelector(`#project_${id}_image`);
   
           if (idx < lowestIdx || idx > highestIdx) {
               project.style.display = "none";
@@ -122,12 +132,35 @@ export default function Home(props) {
               const xTranslation = idx - lowestIdx - 200;
               if (xTranslation < 1 ) {
                   projectText.style.transform = `translateX(${xTranslation * -1}px)`;
-                  projectImage.style.transform = `translateX(${xTranslation }px)`;
+                //   projectImage.style.transform = `translateX(${xTranslation }px)`;
               }
           }
+
+        //   function wait(ms) {
+        //     return new Promise(resolve => setTimeout(resolve, ms));
+        //   }
+
+          
+          // PROBLEM TO SOLVE:
+          // HAVE SCROLL SNAP INTO PLACE AFTER USER STOPS SCROLLING
+        //   // IF CLOSE TO SECTION
+        //   if (idx > (lowestIdx + 30 ) && idx < highestIdx) {
+        //     // let timer = null;
+        //     //     // if time not passed, cancel
+        //         clearTimeout(timer);
+        //     // //execute after timout
+        //     timer = setTimeout(
+        //         // setFrameIndex(lowestIdx + 350), 
+        //         console.log('to snap'),
+        //         2000)
+          
+
+        
+        //     //possible execution, but will run it as many times as called
+        //     // wait(2000).then(() => setFrameIndex(lowestIdx + 350));
+        //   }
   
           if (idx > highestIdx - 175 && idx <= highestIdx) {
-  
               project.style.overflowY = "scroll";
           }
   
@@ -331,7 +364,10 @@ export default function Home(props) {
         {/* <Img fluid={props.data.portrait.childImageSharp.fluid} /> */}
           <div> {projectComponents} </div>
         <ScrollSpace />
-        <About portrait={props.data.portrait.childImageSharp.fluid}/>
+        <About 
+            portrait={props.data.portrait.childImageSharp.fluid}
+            setFrameIndex
+        />
         <Contact />
       </Layout>
     </div>
@@ -347,5 +383,47 @@ export const pageQuery = graphql`
         }
       }
     }
+    project1_image1: file(relativePath: { eq: "project1_image1.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      project1_image2: file(relativePath: { eq: "project1_image2.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      project2_image1: file(relativePath: { eq: "project2_image1.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      project2_image2: file(relativePath: { eq: "project2_image2.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      project3_image1: file(relativePath: { eq: "project3_image1.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      project3_image2: file(relativePath: { eq: "project3_image2.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
   }
 `;

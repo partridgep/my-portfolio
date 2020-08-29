@@ -63,7 +63,7 @@
     }
 }
 
-.ProjectImage {
+.ProjectImages {
     max-height: 60vh;
     display: flex;
     align-items: center;
@@ -74,23 +74,47 @@
     padding: 0;
     box-sizing: border-box;
 
-    img {
-        margin: 0;
-        padding: 0;
-        border: 5px solid rgba(#00627a, 0.5);
-        border-radius: 10px;
-        transition: opacity 0.1s;
-    }
+    // img {
+    //     margin: 0;
+    //     padding: 0;
+    //     border: 5px solid rgba(#00627a, 0.5);
+    //     border-radius: 10px;
+    //     transition: opacity 0.1s;
+    // }
 
-    img:nth-child(1):hover {
-        opacity:0;
-    }
+    // img:nth-child(1):hover {
+    //     opacity:0;
+    // }
 
-    img:nth-child(2) {
-        position: relative;
-        left: -100%;
-        z-index: -1;
-    }
+    // img:nth-child(2) {
+    //     position: relative;
+    //     left: -100%;
+    //     z-index: -1;
+    // }
+}
+.image {
+    top: 0;
+    min-width: 100%;
+    height: max-content;
+    margin: 0;
+    padding: 0;
+    border: 5px solid rgba(#00627a, 0.5);
+    border-radius: 10px;
+    transition: opacity 0.2s;
+}
+
+.image:nth-child(1):hover {
+    opacity: 0;
+}
+
+.image:nth-child(2) {
+    position: relative;
+    left: -100%;
+    z-index: -1;
+}
+
+.image:nth-child(2):hover {
+    display: flex;
 }
 
 .WorkProject::-webkit-scrollbar {
@@ -136,9 +160,8 @@
 
     }
 
-    .ProjectImage {
+    .ProjectImages {
         max-height: 50vh;
-        
         width: 95vw;
         min-width: 200px;
         margin: 3% auto 0 auto;

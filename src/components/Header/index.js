@@ -4,18 +4,7 @@ import styles from './Header.module.scss'
 
 import projects from '../../content/projects'
 
-export default function Header({ title, size }) {
-
-    // total # of frames for scrolling animations
-    const frameCount = 600 + 400 * projects.length
-
-    function setFrameIndex(idx) {
-        //need to find scroll top
-        const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollFraction = idx / frameCount;
-        const scrollTop = maxScrollTop * scrollFraction;
-        window.scroll({top: scrollTop, behavior: "smooth"});
-    }
+export default function Header({ title, size, setFrameIndex }) {
 
     return(
         <header id = "header" className={styles.Header}>

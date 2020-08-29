@@ -1,7 +1,7 @@
 .About {
     position: fixed;
-    // height: calc(100vh - 115px);
-    height: 100%;
+    height: calc(100vh - 115px);
+    // height: 100%;
     top: 115px;
     left: 0;
     width: 100vw;
@@ -9,7 +9,7 @@
     display: none;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    // align-items: center;
     overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -17,6 +17,12 @@
 
 .About::-webkit-scrollbar {
     display: none;
+}
+
+.textWrapper {
+    height: calc( 100vh - 150px);
+    display: flex;
+    align-self: center;
 }
 
 .text {
@@ -55,7 +61,13 @@
         flex-direction: column-reverse;
         width: 100vw;
         top: 70px;
-        // height: calc(100vh - 70px);
+        height: calc(100vh - 70px);
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .textWrapper {
+        height: max-content;
     }
 
     .text {
@@ -72,6 +84,9 @@
         width: 80vw;
         margin: 20px auto;
         padding-top: 30px;
+        img {
+            max-height: none;
+        }
     }
 
 }
