@@ -400,7 +400,7 @@ export default function Home(props) {
   
       // once header is loaded, set up scrolling listener
       useEffect(() => {    
-          console.log("use Effect Scroll");
+          console.log("use Effect Scroll")
           window.addEventListener('scroll', () => { render() })
       }, [])
 
