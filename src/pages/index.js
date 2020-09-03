@@ -1,9 +1,6 @@
 import React, { useEffect } from "react"
 import { graphql } from 'gatsby';
 
-import Img from 'gatsby-image';
-// import ScrollableAnchor, { configureAnchors } from 'react-scrollable-anchor'
-
 import ScrollSpace from '../components/ScrollSpace'
 import Layout from '../components/Layout'
 import WorkProject from '../components/WorkProject'
@@ -20,15 +17,11 @@ export default function Home(props) {
     // total # of frames we will run through
     const frameCount = 600 + 400 * projects.length
 
-    // let timer = 0;
+    //create global idx variable for helper function
+    let aboutIdx;
 
-    // function setFrameIndex(idx) {
-    //     //need to find scroll top
-    //     const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
-    //     const scrollFraction = idx / frameCount;
-    //     const scrollTop = maxScrollTop * scrollFraction;
-    //     window.scroll({top: scrollTop, behavior: "smooth"});
-    // }
+    // boolean to check for Safari browser for scroll implementation
+    const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor)
   
       // update header in DOM based on current frame (index)
       function updateHeader(idx) {
@@ -119,7 +112,7 @@ export default function Home(props) {
   
           const project = document.querySelector(`#project${id}`);
           const projectText = document.querySelector(`#project_${id}_text`);
-        //   const projectImage = document.querySelector(`#project_${id}_image`);
+          const projectImage = document.querySelector(`#project_${id}_image`);
   
           if (idx < lowestIdx || idx > highestIdx) {
               project.style.display = "none";
@@ -132,7 +125,7 @@ export default function Home(props) {
               const xTranslation = idx - lowestIdx - 200;
               if (xTranslation < 1 ) {
                   projectText.style.transform = `translateX(${xTranslation * -1}px)`;
-                //   projectImage.style.transform = `translateX(${xTranslation }px)`;
+                  projectImage.style.transform = `translateX(${xTranslation }px)`;
               }
           }
 
@@ -169,36 +162,88 @@ export default function Home(props) {
               project.style.opacity = `${Math.max(0, opacity )}%`;
           }
       }
-  
+      
       // update DOM about section 
       function updateAbout(frame) {
-  
-          const about = document.querySelector("#about");
-  
-          const lowestIdx = 350 * projects.length;
-          const highestIdx = lowestIdx + 350;
-          const idx = (frame - 160);
-  
-          if (idx < lowestIdx || idx > highestIdx) {
-              about.style.display = "none";
+        
+        const about = document.querySelector("#about");
+        
+        const lowestIdx = 350 * projects.length;
+        const highestIdx = lowestIdx + 350;
+        const idx = (frame - 160);
+        aboutIdx = idx;
+        
+        //always go to top of section when entering
+        if (idx <= lowestIdx + 100 && idx > lowestIdx - 50) {
+          // offset by 1 so helper function
+          // will automatically pause main page scrolling
+          about.scrollTop = 1;
+          // if on Safari, scrollTop is inverted
+          // if told to go to 1, it will go to its maximum which is 0
+          // it must be given opposite value
+          if (about.scrollTop === 0) {
+            about.scrollTop = 0 - about.offsetHeight;
+            about.scrollTop += 1;
           }
-  
-          else if (idx > lowestIdx) {
-              about.style.display = "flex";
-              about.style.opacity = `${idx - lowestIdx}%`;
-              about.style.overflowY = "hidden";
+        }
+        
+        if (idx < lowestIdx || idx > highestIdx) {
+          about.style.display = "none";
+        }
+        
+        else if (idx > lowestIdx) {
+          about.style.display = "flex";
+          about.style.opacity = `${idx - lowestIdx}%`;
+          about.style.overflowY = "hidden";
+        }
+        
+        if (idx > highestIdx - 175 && idx <= highestIdx) {
+          about.style.overflowY = "scroll";
+          if (about.scrollTop === 1 
+              || about.scrollTop === (-1 * (about.scrollHeight - about.offsetHeight)) + 1
+              || about.scrollTop === (about.scrollHeight - about.offsetHeight)) {
+            checkDivScroll();
           }
-  
-          if (idx > highestIdx - 175 && idx <= highestIdx) {
-              about.style.overflowY = "scroll";
-          }
-  
-          if (idx > highestIdx - 75 && idx <= highestIdx) {
-              const opacity = ((highestIdx - idx - lowestIdx) + (350 * (projects.length)));
-              about.style.opacity = `${Math.max(0, opacity )}%`;
-          }
+        }
+        
+        if (idx > highestIdx - 75 && idx <= highestIdx) {
+          const opacity = ((highestIdx - idx - lowestIdx) + (350 * (projects.length)));
+          about.style.opacity = `${Math.max(0, opacity )}%`;
+          about.style.overflowY = "hidden";
+        }
       }
-  
+      
+      // HELPER FUNCTION
+      // check scroll progress within about section
+      // pauses and resumes main page scrolling 
+      function checkDivScroll() {
+
+        const about = document.querySelector("#about");
+        const maxDivScroll = about.scrollHeight - about.offsetHeight;
+
+        let scrollTop;
+
+        // invert scrollTop value for Safari
+        if (about.scrollTop < 0) scrollTop = about.scrollTop + maxDivScroll;
+        else scrollTop = about.scrollTop;
+
+        // prevent elastic scroll on Safari
+        if (scrollTop < 0) about.scrollTop = 0 - maxDivScroll;
+        if (about.scrollTop > 0 && isSafari) about.scrollTop = 0;
+
+        // if about section scrolling is at beginning or end,
+        // resume main page scrolling
+        if ((scrollTop <= 0 || scrollTop >= maxDivScroll)) {
+          document.documentElement.style.overflow = "scroll";
+        }
+
+        // else, AND IF section has full opacity,
+        // pause main page scrolling
+        else if (aboutIdx > (350 * projects.length + 175)) {
+          document.documentElement.style.overflow = "hidden";
+        }
+      }
+
       function updateContact(frame) {
   
           const contact = document.querySelector('#contact');
@@ -262,6 +307,7 @@ export default function Home(props) {
               subtitle.style.display = "none";
               nav.style.display = "none";
           } else if (idx < 30) {
+              header.style.zIndex = "50";
               subtitle.style.display = "block";
               nav.style.display = "block";
               nav.style.margin = "20px 0 10vh 0";
@@ -270,7 +316,8 @@ export default function Home(props) {
               nav.style.right = "0";
               buttons.forEach(button => {
                   button.style.fontSize = "23px";
-                  button.style.margin = "3%";
+                  button.style.margin = "3% 0";
+                  button.style.zIndex = "0";
               })
           // reintroduce nav buttons to right of header
           } else if (idx > 60) {
@@ -332,13 +379,24 @@ export default function Home(props) {
               }
               updateAbout(frameIndex);
               updateContact(frameIndex);
+
+              // maintain scroll as long as we are not in about section
+              if (aboutIdx < 350 * projects.length || aboutIdx > 350 * projects.length + 350) {
+                document.documentElement.style.overflow = "scroll";
+              }
+              
       }
   
       // once header is loaded, set up scrolling listener
       useEffect(() => {    
           window.addEventListener('scroll', () => { render() })
-          console.log("adding effect");
       }, [])
+
+      // set up listener on about section scrolling
+      useEffect(() => {
+        const about = document.querySelector("#about");
+        about.addEventListener('scroll', () => { checkDivScroll() })
+    }, [])
   
       // once header is loaded, set up resize listener
       useEffect(() => {    
@@ -352,8 +410,8 @@ export default function Home(props) {
         name = {project.name}
         id={project.id}
         description={project.description}
-        mainScreenshot={project.mainScreenshot}
-        secondaryScreenshot={project.secondaryScreenshot}
+        mainScreenshot={props.data[`project${project.id}_image1`].childImageSharp.fluid}
+        secondaryScreenshot={props.data[`project${project.id}_image2`].childImageSharp.fluid}
       />
     </div>
     )
@@ -361,8 +419,7 @@ export default function Home(props) {
   return (
     <div>
       <Layout>
-        {/* <Img fluid={props.data.portrait.childImageSharp.fluid} /> */}
-          <div> {projectComponents} </div>
+        {projectComponents}
         <ScrollSpace />
         <About 
             portrait={props.data.portrait.childImageSharp.fluid}

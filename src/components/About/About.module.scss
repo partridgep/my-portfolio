@@ -23,6 +23,7 @@
     height: calc( 100vh - 150px);
     display: flex;
     align-self: center;
+    flex-shrink: 0;
 }
 
 .text {
@@ -31,13 +32,22 @@
     max-width: 50vw;
     font-family: Alata;
     max-height: 100%;
+    font-size: 23px;
     h1 {
         color: #00627a;
+    }
+    a {
+        color: rgb(37, 37, 37);
+    }
+    a:hover {
+        color: rgb(87, 87, 87);
     }
 }
 
 .portrait {
     display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
     align-items: center;
     width: 30vw;
     height: max-content;
@@ -64,6 +74,7 @@
         height: calc(100vh - 70px);
         align-items: center;
         justify-content: flex-start;
+        -webkit-overflow-scrolling: auto;
     }
 
     .textWrapper {

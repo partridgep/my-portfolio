@@ -1,31 +1,12 @@
 import React from 'react'
 import Img from 'gatsby-image';
-import { Link, graphql, useStaticQuery} from 'gatsby'
+import { Link } from 'gatsby'
 
 import styles from './WorkProject.module.scss'
 
 export default function WorkProject( {name, id, description, mainScreenshot, secondaryScreenshot} ) {
 
-    const link = name.toLowerCase().replace(/\s/g, "-")
-
-    const data = useStaticQuery(graphql`
-    query {
-        project_mainImage: file(relativePath: { eq: "project1_image1.jpg" }) {
-          childImageSharp {
-            fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        project_secondaryImage: file(relativePath: { eq: "project1_image2.jpg" }) {
-            childImageSharp {
-              fluid(maxWidth: 1000) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-      }
-    `)
+    const link = name.toLowerCase().replace(/\s/g, "-");
 
     return(
         <div id={`project${id}`} key={id} className={styles.WorkProject}>
@@ -34,20 +15,16 @@ export default function WorkProject( {name, id, description, mainScreenshot, sec
                 {description}
                 <button><Link to={link}>Learn More</Link></button>
             </div>
-            <div  id={`project_${id}_image`} className={styles.ProjectImages}>
+            <div id={`project_${id}_image`} className={styles.ProjectImages}>
                 <Img 
-                    fluid={data.project_mainImage.childImageSharp.fluid} 
+                    fluid={mainScreenshot} 
                     className={styles.image}  
                 />
                 <Img 
-                    fluid={data.project_secondaryImage.childImageSharp.fluid} 
+                    fluid={secondaryScreenshot} 
                     className={styles.image} 
                 />
             </div>
-                {/* <div  id={`project_${id}_image`} className={styles.ProjectImages}>
-                    <img src={mainScreenshot} alt="main page screenshot" />  
-                    <img src={secondaryScreenshot} alt="secondary page screenshot"/>
-                </div> */}
         </div>
     )
 }

@@ -19,8 +19,6 @@ export default function About({portrait}) {
       }
     `)
 
-    console.log(data);
-
     return (
         <div className={styles.About} id="about">
             {/* <ScrollSpace /> */}
@@ -33,7 +31,7 @@ export default function About({portrait}) {
                   <p>When I'm not pushing new code to GitHub, you can find me taking long walks and desperately trying to turn my dog into an influencer on Instagram <a href="https://www.instagram.com/worldofmeatball/" target="_blank" rel="noreferrer">@worldofmeatball</a>.</p>
               </div>
             </div>
-            <div style={{display: 'flex', alignItems: 'center'}}>
+            <div style={{display: 'flex', alignItems: 'center', flexShrink: '0'}}>
                 <Img fluid={data.portrait.childImageSharp.fluid} className={styles.portrait}/>
                 {/* <img src="https://i.imgur.com/uW1Dbli.jpg" alt="Paul Partridge portrait"></img> style={{ width: '30vw' }}*/}
             </div>
