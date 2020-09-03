@@ -174,7 +174,7 @@ export default function Home(props) {
         aboutIdx = idx;
         
         //always go to top of section when entering
-        if (idx <= lowestIdx + 100 && idx > lowestIdx - 50) {
+        if (idx <= lowestIdx + 100 || idx > highestIdx) {
           // offset by 1 so helper function
           // will automatically pause main page scrolling
           about.scrollTop = 1;
@@ -187,25 +187,35 @@ export default function Home(props) {
           }
         }
         
+        // hide about section is not within scroll zone
         if (idx < lowestIdx || idx > highestIdx) {
           about.style.display = "none";
         }
         
+        // fade in about section once within scroll zone
         else if (idx > lowestIdx) {
           about.style.display = "flex";
           about.style.opacity = `${idx - lowestIdx}%`;
           about.style.overflowY = "hidden";
         }
         
+        // once section is fully "scrolled into" 
+        // (meaning it's at full opacity)
+        // enable scroll within about section
+        // and pause scroll on main window
         if (idx > highestIdx - 175 && idx <= highestIdx) {
           about.style.overflowY = "scroll";
+          // check if at very beginning or at very end
           if (about.scrollTop === 1 
+              // below is inverted top value to check in Safari
               || about.scrollTop === (-1 * (about.scrollHeight - about.offsetHeight)) + 1
               || about.scrollTop === (about.scrollHeight - about.offsetHeight)) {
+            // call function to check if scrolling should be paused
             checkDivScroll();
           }
         }
         
+        // once out of scroll zone, fade out
         if (idx > highestIdx - 75 && idx <= highestIdx) {
           const opacity = ((highestIdx - idx - lowestIdx) + (350 * (projects.length)));
           about.style.opacity = `${Math.max(0, opacity )}%`;
@@ -219,6 +229,7 @@ export default function Home(props) {
       function checkDivScroll() {
 
         const about = document.querySelector("#about");
+        // maximum scroll value for about section
         const maxDivScroll = about.scrollHeight - about.offsetHeight;
 
         let scrollTop;
@@ -239,7 +250,7 @@ export default function Home(props) {
 
         // else, AND IF section has full opacity,
         // pause main page scrolling
-        else if (aboutIdx > (350 * projects.length + 175)) {
+        else if (aboutIdx > (350 * projects.length + 175) && aboutIdx < 350 * projects.length + 200) {
           document.documentElement.style.overflow = "hidden";
         }
       }
@@ -389,6 +400,7 @@ export default function Home(props) {
   
       // once header is loaded, set up scrolling listener
       useEffect(() => {    
+          console.log("use Effect Scroll");
           window.addEventListener('scroll', () => { render() })
       }, [])
 
