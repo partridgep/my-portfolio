@@ -21,7 +21,7 @@ export default function Home(props) {
     let aboutIdx;
 
     // boolean to check for Safari browser for scroll implementation
-    const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor)
+    // const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor)
   
       // update header in DOM based on current frame (index)
       function updateHeader(idx) {
@@ -240,7 +240,9 @@ export default function Home(props) {
 
         // prevent elastic scroll on Safari
         if (scrollTop < 0) about.scrollTop = 0 - maxDivScroll;
-        if (about.scrollTop > 0 && isSafari) about.scrollTop = 0;
+        if (about.scrollTop > 0 
+          // && isSafari
+        ) about.scrollTop = 0;
 
         // if about section scrolling is at beginning or end,
         // resume main page scrolling

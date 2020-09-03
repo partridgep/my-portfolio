@@ -14,9 +14,9 @@ import styles from './Layout.module.scss'
 require("typeface-alata")
 require("typeface-amatic-sc")
 
-window.__forceSmoothScrollPolyfill__ = true;
+// window.__forceSmoothScrollPolyfill__ = true;
 // kick off the polyfill!
-smoothscroll.polyfill();
+// smoothscroll.polyfill();
 
 export default function Layout({ pageTitle, children }) {
 
