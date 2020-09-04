@@ -240,9 +240,9 @@ export default function Home(props) {
 
         // prevent elastic scroll on Safari
         if (scrollTop < 0) about.scrollTop = 0 - maxDivScroll;
-        if (about.scrollTop > 0 
-          // && isSafari
-        ) about.scrollTop = 0;
+        // if (about.scrollTop > 0 
+        //   // && isSafari
+        // ) about.scrollTop = 0;
 
         // if about section scrolling is at beginning or end,
         // resume main page scrolling

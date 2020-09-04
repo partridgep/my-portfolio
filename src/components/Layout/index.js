@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 
-import smoothscroll from 'smoothscroll-polyfill';
+//import smoothscroll from 'smoothscroll-polyfill';
+import smoothscroll from 'gatsby-plugin-smoothscroll';
 
 import {useStaticQuery, graphql} from 'gatsby'
 
@@ -15,7 +16,7 @@ require("typeface-alata")
 require("typeface-amatic-sc")
 
 // window.__forceSmoothScrollPolyfill__ = true;
-// kick off the polyfill!
+// // kick off the polyfill!
 // smoothscroll.polyfill();
 
 export default function Layout({ pageTitle, children }) {
