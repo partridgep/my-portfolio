@@ -9,7 +9,7 @@ export default function WorkProject( {name, id, description, mainScreenshot, sec
     const link = name.toLowerCase().replace(/\s/g, "-");
 
     return(
-        <div id={`project${id}`} key={id} className={styles.WorkProject}>
+        <div id={`project${id}`} key={id} className={`${styles.WorkProject} project`}>
             <div id={`project_${id}_text`}>
                 <h1>{name}</h1>
                 {description}

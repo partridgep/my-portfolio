@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
 //import smoothscroll from 'smoothscroll-polyfill';
-import smoothscroll from 'gatsby-plugin-smoothscroll';
+// import smoothscroll from 'gatsby-plugin-smoothscroll';
 
 import {useStaticQuery, graphql} from 'gatsby'
 

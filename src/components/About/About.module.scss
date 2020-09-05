@@ -1,12 +1,12 @@
 .About {
-    position: fixed;
-    height: calc(100vh - 115px);
-    // height: 100%;
-    top: 115px;
-    left: 0;
+    position: relative;
+    min-height: calc(100vh - 115px);
+    height: max-content;
+    // top: 115px;
+    // left: 0;
     width: 100vw;
-    // display: flex;
-    display: none;
+    display: flex;
+    // display: none;
     flex-direction: row;
     justify-content: space-around;
     // align-items: center;
@@ -71,7 +71,7 @@
         flex-direction: column-reverse;
         width: 100vw;
         top: 70px;
-        height: calc(100vh - 70px);
+        min-height: calc(100vh - 70px);
         align-items: center;
         justify-content: flex-start;
         -webkit-overflow-scrolling: auto;

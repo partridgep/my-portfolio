@@ -6,6 +6,7 @@ import Layout from '../components/Layout'
 import WorkProject from '../components/WorkProject'
 import About from '../components/About'
 import Contact from '../components/Contact'
+import Index from '../components/Index'
 
 import projects from '../content/projects'
 
@@ -15,10 +16,13 @@ export default function Home(props) {
     const breakpoint = 832
 
     // total # of frames we will run through
-    const frameCount = 600 + 400 * projects.length
+    const frameCount = 600 + 400 
+    // * projects.length
 
     //create global idx variable for helper function
     let aboutIdx;
+
+
 
     // boolean to check for Safari browser for scroll implementation
     // const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor)
@@ -97,182 +101,201 @@ export default function Home(props) {
               })
           }
       }
-  
+
+
       // update DOM projects
-      function updateProject(frame, id) {
-  
-          const lowestIdx = 350 * (id - 1);
-          const highestIdx = lowestIdx + 350;
-          const idx = (frame - 160);
-  
-        //   console.log(`idx: ${idx}`);
-          // console.log(`lowestIdx for ${id}: ${lowestIdx}`);
-          // console.log(`highestIdx for ${id}: ${highestIdx}`);
-          // console.log(`Project idx for ${id}: ${idx}`);
-  
-          const project = document.querySelector(`#project${id}`);
-          const projectText = document.querySelector(`#project_${id}_text`);
-          const projectImage = document.querySelector(`#project_${id}_image`);
-  
-          if (idx < lowestIdx || idx > highestIdx) {
-              project.style.display = "none";
-          }
-  
-          else if (idx > lowestIdx) {
-              project.style.display = "flex";
-              project.style.opacity = `${idx - lowestIdx}%`;
-              project.style.overflowY = "hidden";
-              const xTranslation = idx - lowestIdx - 200;
-              if (xTranslation < 1 ) {
-                  projectText.style.transform = `translateX(${xTranslation * -1}px)`;
-                  projectImage.style.transform = `translateX(${xTranslation }px)`;
-              }
-          }
+      function updateProject1(frame) {
 
-        //   function wait(ms) {
-        //     return new Promise(resolve => setTimeout(resolve, ms));
-        //   }
-
-          
-          // PROBLEM TO SOLVE:
-          // HAVE SCROLL SNAP INTO PLACE AFTER USER STOPS SCROLLING
-        //   // IF CLOSE TO SECTION
-        //   if (idx > (lowestIdx + 30 ) && idx < highestIdx) {
-        //     // let timer = null;
-        //     //     // if time not passed, cancel
-        //         clearTimeout(timer);
-        //     // //execute after timout
-        //     timer = setTimeout(
-        //         // setFrameIndex(lowestIdx + 350), 
-        //         console.log('to snap'),
-        //         2000)
-          
-
-        
-        //     //possible execution, but will run it as many times as called
-        //     // wait(2000).then(() => setFrameIndex(lowestIdx + 350));
-        //   }
-  
-          if (idx > highestIdx - 175 && idx <= highestIdx) {
-              project.style.overflowY = "scroll";
-          }
-  
-          if (idx > highestIdx - 75 && idx <= highestIdx) {
-              const opacity = ((highestIdx - idx - lowestIdx) + (350 * (id - 1)));
-              project.style.opacity = `${Math.max(0, opacity )}%`;
-          }
-      }
-      
-      // update DOM about section 
-      function updateAbout(frame) {
-        
-        const about = document.querySelector("#about");
-        
-        const lowestIdx = 350 * projects.length;
-        const highestIdx = lowestIdx + 350;
+        const lowestIdx = 0;
+        const highestIdx = 350;
         const idx = (frame - 160);
-        aboutIdx = idx;
+
+      //   console.log(`idx: ${idx}`);
+        // console.log(`lowestIdx for ${id}: ${lowestIdx}`);
+        // console.log(`highestIdx for ${id}: ${highestIdx}`);
+        // console.log(`Project idx for ${id}: ${idx}`);
+
+        const project = document.querySelector(`#project1`);
+        const projectText = document.querySelector(`#project_1_text`);
+        const projectImage = document.querySelector(`#project_1_image`);
+        const allProjects = document.querySelectorAll(`.project`);
+        const index = document.querySelector(`.index`);
+        const scrollSpace = document.querySelector(`#scrollSpace`);
+
+        const indexHeight = index.scrollHeight;
+        const projectHeight = project.scrollHeight
+    
+        scrollSpace.style.height = `calc(100vh + ${indexHeight}px + ${projectHeight + 175}px)`;
         
-        //always go to top of section when entering
-        if (idx <= lowestIdx + 100 || idx > highestIdx) {
-          // offset by 1 so helper function
-          // will automatically pause main page scrolling
-          about.scrollTop = 1;
-          // if on Safari, scrollTop is inverted
-          // if told to go to 1, it will go to its maximum which is 0
-          // it must be given opposite value
-          if (about.scrollTop === 0) {
-            about.scrollTop = 0 - about.offsetHeight;
-            about.scrollTop += 1;
+        if (idx < lowestIdx) {
+          project.style.opacity = "0";
+          index.style.position = "fixed";
+          index.style.zIndex = -1;
+          for (let projectDiv of allProjects) {
+            projectDiv.style.opacity = "0";
           }
         }
         
-        // hide about section is not within scroll zone
-        if (idx < lowestIdx || idx > highestIdx) {
-          about.style.display = "none";
-        }
-        
-        // fade in about section once within scroll zone
         else if (idx > lowestIdx) {
-          about.style.display = "flex";
-          about.style.opacity = `${idx - lowestIdx}%`;
-          about.style.overflowY = "hidden";
-        }
-        
-        // once section is fully "scrolled into" 
-        // (meaning it's at full opacity)
-        // enable scroll within about section
-        // and pause scroll on main window
-        if (idx > highestIdx - 175 && idx <= highestIdx) {
-          about.style.overflowY = "scroll";
-          // check if at very beginning or at very end
-          if (about.scrollTop === 1 
-              // below is inverted top value to check in Safari
-              || about.scrollTop === (-1 * (about.scrollHeight - about.offsetHeight)) + 1
-              || about.scrollTop === (about.scrollHeight - about.offsetHeight)) {
-            // call function to check if scrolling should be paused
-            checkDivScroll();
+          project.style.display = "flex";
+          project.style.opacity = `${idx - lowestIdx}%`;
+          project.style.overflowY = "hidden";
+          const xTranslation = idx - lowestIdx - 200;
+          if (xTranslation < 1 ) {
+            projectText.style.transform = `translateX(${xTranslation * -1}px)`;
+            projectImage.style.transform = `translateX(${xTranslation }px)`;
           }
         }
         
-        // once out of scroll zone, fade out
-        if (idx > highestIdx - 75 && idx <= highestIdx) {
-          const opacity = ((highestIdx - idx - lowestIdx) + (350 * (projects.length)));
-          about.style.opacity = `${Math.max(0, opacity )}%`;
-          about.style.overflowY = "hidden";
+        if (idx > highestIdx - 150 ) {
+          scrollSpace.style.display = "none";
+          project.style.overflowY = "scroll";
+          index.style.position = "absolute";
+          index.style.zIndex = -1;
+          index.style.top = "calc(200vh + 115px)";
+          for (let projectDiv of allProjects) {
+            projectDiv.style.opacity = "1";
+          }
         }
-      }
+
+        if (idx < highestIdx - 150) {
+          project.style.display = "flex";
+          index.style.position = "fixed";
+          index.style.zIndex = 1;
+          index.style.top = "115px";
+          scrollSpace.style.display = "block";
+          scrollSpace.style.height = `calc(100vh + ${indexHeight}px + ${projectHeight + 175}px)`;
+        }
+    }
       
-      // HELPER FUNCTION
-      // check scroll progress within about section
-      // pauses and resumes main page scrolling 
-      function checkDivScroll() {
+      // // update DOM about section 
+      // function updateAbout(frame) {
+        
+      //   const about = document.querySelector("#about");
+        
+      //   const lowestIdx = 350 * projects.length;
+      //   const highestIdx = lowestIdx + 350;
+      //   const idx = (frame - 160);
+      //   aboutIdx = idx;
+        
+      //   //always go to top of section when entering
+      //   if (idx <= lowestIdx + 100 || idx > highestIdx) {
+      //     // offset by 1 so helper function
+      //     // will automatically pause main page scrolling
+      //     // about.scrollTop = 1;
+      //     // if (about.scrollTop === 0) {
+      //       about.scrollTop = 0 - about.offsetHeight;
+      //       about.scrollTop += 1;
+      //     // }
+      //     // if on Safari, scrollTop is inverted
+      //     // if told to go to 1, it will go to its maximum which is 0
+      //     // it must be given opposite value
+      //   }
+        
+      //   // hide about section is not within scroll zone
+      //   if (idx < lowestIdx || idx > highestIdx) {
+      //     about.style.display = "none";
+      //   }
+        
+      //   // fade in about section once within scroll zone
+      //   else if (idx > lowestIdx) {
+      //     about.style.display = "flex";
+      //     about.style.opacity = `${idx - lowestIdx}%`;
+      //     about.style.overflowY = "hidden";
+      //   }
+        
+      //   // once section is fully "scrolled into" 
+      //   // (meaning it's at full opacity)
+      //   // enable scroll within about section
+      //   // and pause scroll on main window
+      //   if (idx > highestIdx - 175 && idx <= highestIdx) {
+      //     about.style.overflowY = "scroll";
+      //     // check if at very beginning or at very end
+      //     if (about.scrollTop === 1 
+      //         // below is inverted top value to check in Safari
+      //         || about.scrollTop === (-1 * (about.scrollHeight - about.offsetHeight)) + 1
+      //         || about.scrollTop === (-1 * (about.scrollHeight - about.offsetHeight)) + 2
+      //         || about.scrollTop === (about.scrollHeight - about.offsetHeight)) {
+      //       // call function to check if scrolling should be paused
+      //       checkDivScroll();
+      //     }
+      //   }
+        
+      //   // once out of scroll zone, fade out
+      //   if (idx > highestIdx - 75 && idx <= highestIdx) {
+      //     const opacity = ((highestIdx - idx - lowestIdx) + (350 * (projects.length)));
+      //     about.style.opacity = `${Math.max(0, opacity )}%`;
+      //     about.style.overflowY = "hidden";
+      //   }
+      // }
+      
+      // // HELPER FUNCTION
+      // // check scroll progress within about section
+      // // pauses and resumes main page scrolling 
+      // function checkDivScroll() {
 
-        const about = document.querySelector("#about");
-        // maximum scroll value for about section
-        const maxDivScroll = about.scrollHeight - about.offsetHeight;
+      //   const about = document.querySelector("#about");
+      //   // maximum scroll value for about section
+      //   const maxDivScroll = about.scrollHeight - about.offsetHeight;
 
-        let scrollTop;
+      //   let scrollTop;
+        
+      //   // invert scrollTop value for Safari
+      //   // if (about.scrollTop < 0) {
+      //     scrollTop = about.scrollTop + maxDivScroll; 
 
-        // invert scrollTop value for Safari
-        if (about.scrollTop < 0) scrollTop = about.scrollTop + maxDivScroll;
-        else scrollTop = about.scrollTop;
+      //     // }
+      //   // else scrollTop = about.scrollTop;
 
-        // prevent elastic scroll on Safari
-        if (scrollTop < 0) about.scrollTop = 0 - maxDivScroll;
-        // if (about.scrollTop > 0 
-        //   // && isSafari
-        // ) about.scrollTop = 0;
 
-        // if about section scrolling is at beginning or end,
-        // resume main page scrolling
-        if ((scrollTop <= 0 || scrollTop >= maxDivScroll)) {
-          document.documentElement.style.overflow = "scroll";
-        }
+      //   console.log(`scrollTop: ${scrollTop}`);
+      //   console.log(`aboutIdx: ${aboutIdx}`);
+      //   console.log(`about.scrollTop: ${about.scrollTop}`);
+      //   console.log(`maxDivScroll: ${maxDivScroll}`)
+      //   console.log(`---------------------`);
+        
+      //   // prevent elastic scroll on Safari
+      //   // if (scrollTop < 0) {
+      //   //   about.scrollTop = 0 - maxDivScroll;
+      //   // }
+      //   // if (about.scrollTop > 0 
+      //   //   // && isSafari
+      //   // ) about.scrollTop = 0;
 
-        // else, AND IF section has full opacity,
-        // pause main page scrolling
-        else if (aboutIdx > (350 * projects.length + 175) && aboutIdx < 350 * projects.length + 200) {
-          document.documentElement.style.overflow = "hidden";
-        }
-      }
+      //   // if about section scrolling is at beginning or end,
+      //   // resume main page scrolling
+      //   if ((scrollTop <= 0 || scrollTop >= maxDivScroll )) {
+      //     console.log("gotta scroll");
+      //     document.documentElement.style.overflow = "scroll";
+      //   }
+        
+      //   // else, AND IF section has full opacity,
+      //   // pause main page scrolling
+      //   else if (aboutIdx > (350 * projects.length + 100) && aboutIdx < 350 * projects.length + 200) {
+      //     // console.log("scrollTop means hidden");
+      //     console.log("gotta hide");
+      //     document.documentElement.style.overflow = "hidden";
+      //   }
 
-      function updateContact(frame) {
+      //   console.log(`scrollTop means ${document.documentElement.style.overflow}`);
+      // }
+
+      // function updateContact(frame) {
   
-          const contact = document.querySelector('#contact');
+      //     const contact = document.querySelector('#contact');
   
-          const lowestIdx = 350 * (projects.length + 1);
-          const idx = (frame - 160);
+      //     const lowestIdx = 350 * (projects.length + 1);
+      //     const idx = (frame - 160);
   
-          if (idx < lowestIdx) {
-              contact.style.display = "none";
-          }
+      //     if (idx < lowestIdx) {
+      //         contact.style.display = "none";
+      //     }
   
-          else if (idx > lowestIdx) {
-              contact.style.display = "flex";
-              contact.style.opacity = `${idx - lowestIdx}%`;
-          }
-      }
+      //     else if (idx > lowestIdx) {
+      //         contact.style.display = "flex";
+      //         contact.style.opacity = `${idx - lowestIdx}%`;
+      //     }
+      // }
   
       // update DOM header values for mobile
       function updateHeaderMobile(idx) {
@@ -322,14 +345,16 @@ export default function Home(props) {
           } else if (idx < 30) {
               header.style.zIndex = "50";
               subtitle.style.display = "block";
-              nav.style.display = "block";
-              nav.style.margin = "20px 0 10vh 0";
+              nav.style.display = "flex";
+              nav.style.margin = "20px 0 23vh 0";
               nav.style.position = "relative";
+              nav.style.flexDirection = "column";
+              nav.style.alignItems = "center";
               nav.style.top = "0";
               nav.style.right = "0";
               buttons.forEach(button => {
-                  button.style.fontSize = "23px";
-                  button.style.margin = "3% 0";
+                  button.style.fontSize = "20px";
+                  button.style.margin = "5% 0";
                   button.style.zIndex = "0";
               })
           // reintroduce nav buttons to right of header
@@ -352,11 +377,11 @@ export default function Home(props) {
       function getFrameIndex() {
           // current scroll index
           const scrollTop = window.scrollY;
-          // console.log(`scrollTop: ${scrollTop}`);
-          // console.log(`scrollHeight: ${document.documentElement.scrollHeight}`);
+          console.log(`scrollTop: ${scrollTop}`);
+          console.log(`scrollHeight: ${document.documentElement.scrollHeight}`);
           // total amount of scroll available
           const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
-          // console.log(`maxScrollTop: ${maxScrollTop}`);
+          console.log(`maxScrollTop: ${maxScrollTop}`);
           // how much has been scrolled from 0 to 1
           const scrollFraction = scrollTop / maxScrollTop;
           // console.log(`scrollFraction: ${scrollFraction}`);
@@ -365,8 +390,8 @@ export default function Home(props) {
               frameCount - 1,
               Math.ceil(scrollFraction * frameCount)
           );
-          // console.log(`frameIndex: ${frameIndex}`)
-          // console.log("_____________");
+          console.log(`frameIndex: ${frameIndex}`)
+          console.log("_____________");
           // setFrameIndex(frameIndex);
           return frameIndex;
       }
@@ -387,16 +412,17 @@ export default function Home(props) {
                   updateHeader(frameIndex / 2);
               }
               // update project components in DOM
-              for (let project of projects) {
-                  updateProject(frameIndex, project.id)
-              }
-              updateAbout(frameIndex);
-              updateContact(frameIndex);
+              // for (let project of projects) {
+              //     updateProject(frameIndex, project.id)
+              // }
+              updateProject1(frameIndex)
+              //updateAbout(frameIndex);
+              //updateContact(frameIndex);
 
-              // maintain scroll as long as we are not in about section
-              if (aboutIdx < 350 * projects.length || aboutIdx > 350 * projects.length + 350) {
-                document.documentElement.style.overflow = "scroll";
-              }
+              // // maintain scroll as long as we are not in about section
+              // if (aboutIdx < 350 * projects.length || aboutIdx > 350 * projects.length + 350) {
+              //   document.documentElement.style.overflow = "scroll";
+              // }
               
       }
   
@@ -407,10 +433,10 @@ export default function Home(props) {
       }, [])
 
       // set up listener on about section scrolling
-      useEffect(() => {
-        const about = document.querySelector("#about");
-        about.addEventListener('scroll', () => { checkDivScroll() })
-    }, [])
+    //   useEffect(() => {
+    //     const about = document.querySelector("#about");
+    //     about.addEventListener('scroll', () => { checkDivScroll() })
+    // }, [])
   
       // once header is loaded, set up resize listener
       useEffect(() => {    
@@ -419,7 +445,7 @@ export default function Home(props) {
 
   const projectComponents = projects.map(project =>
     <div key={project.id}>
-      <ScrollSpace />
+      {/* <ScrollSpace /> */}
       <WorkProject 
         name = {project.name}
         id={project.id}
@@ -433,13 +459,18 @@ export default function Home(props) {
   return (
     <div>
       <Layout>
-        {projectComponents}
         <ScrollSpace />
-        <About 
-            portrait={props.data.portrait.childImageSharp.fluid}
-            setFrameIndex
-        />
-        <Contact />
+        <Index
+          projectComponents = {projectComponents}
+          portrait={props.data.portrait.childImageSharp.fluid}
+        >
+          {/* {projectComponents}
+          <About 
+              portrait={props.data.portrait.childImageSharp.fluid}
+              setFrameIndex
+          />
+          <Contact /> */}
+        </Index>
       </Layout>
     </div>
   )

@@ -1,11 +1,12 @@
 .WorkProject {
-    position: fixed;
-    height: calc(100vh - 115px);
-    top: 115px;
+    position: relative;
+    min-height: calc(100vh - 115px);
+    // top: 115px;
     left: 0;
     width: 100vw;
-    // display: flex;
-    display: none;
+    display: flex;
+    // display: none;
+    opacity: 0;
     flex-direction: row;
     justify-content: space-around;
     // margin: 3% 0 3% 3%;
