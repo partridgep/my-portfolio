@@ -17,6 +17,7 @@
     width: 100vw;
     height: 100vh;
     min-height: 115px;
+    z-index: 5;
 
     div {
         max-width: 600px;
@@ -183,6 +184,7 @@
                 margin: 5% 0;
                 width: 100%;
                 z-index: 0;
+                padding: 3px;
             }
             button::before {
                 width: 0;

@@ -15,9 +15,9 @@ export default function Header({ title, size, setFrameIndex }) {
                 </h2>
             {size === "big" ?
             <nav>
-                <a href="/#work" onClick={() => setFrameIndex(360)}><button>My Work</button></a>
-                <a href="/#about" onClick={() => setFrameIndex(360 * (projects.length + 1))}><button>About</button></a>
-                <a href="/#contact" onClick={() => setFrameIndex(360 * (projects.length + 2))}><button>Contact Me</button></a>
+                <button onClick={() => setFrameIndex("project1")}>My Work</button>
+                <button onClick={() => setFrameIndex("about")}>About</button>
+                <button onClick={() => setFrameIndex("contact")}>Contact Me</button>
             </nav>
             :
             <nav>

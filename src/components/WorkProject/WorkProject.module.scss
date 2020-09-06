@@ -1,16 +1,19 @@
 .WorkProject {
     position: relative;
     min-height: calc(100vh - 115px);
+    height: max-content;
     // top: 115px;
     left: 0;
     width: 100vw;
     display: flex;
+    flex-shrink: 0;
+    flex-grow: 1;
     // display: none;
     opacity: 0;
     flex-direction: row;
     justify-content: space-around;
     // margin: 3% 0 3% 3%;
-    overflow-y: scroll;
+    overflow-y: hidden;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     
@@ -68,31 +71,16 @@
     max-height: 60vh;
     display: flex;
     align-items: center;
+    flex-shrink: 0;
+    flex-grow: 1;
     width: 45vw;
     min-width: 400px;
     max-width: 1010px;
     margin: 0 2% 0 40px;
     padding: 0;
     box-sizing: border-box;
-
-    // img {
-    //     margin: 0;
-    //     padding: 0;
-    //     border: 5px solid rgba(#00627a, 0.5);
-    //     border-radius: 10px;
-    //     transition: opacity 0.1s;
-    // }
-
-    // img:nth-child(1):hover {
-    //     opacity:0;
-    // }
-
-    // img:nth-child(2) {
-    //     position: relative;
-    //     left: -100%;
-    //     z-index: -1;
-    // }
 }
+
 .image {
     top: 0;
     min-width: 100%;
@@ -125,8 +113,8 @@
 @media(max-width: 832px) {
 
     .WorkProject {
-        height: calc(100vh - 70px);
-        top: 70px;
+        min-height: calc(100vh - 70px);
+        // top: 70px;
         left: 0;
         flex-direction: column-reverse;
         justify-content: space-evenly;

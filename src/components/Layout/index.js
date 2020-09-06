@@ -1,8 +1,5 @@
 import React, { Fragment } from 'react'
 
-//import smoothscroll from 'smoothscroll-polyfill';
-// import smoothscroll from 'gatsby-plugin-smoothscroll';
-
 import {useStaticQuery, graphql} from 'gatsby'
 
 import Header from '../Header'
@@ -15,20 +12,26 @@ import styles from './Layout.module.scss'
 require("typeface-alata")
 require("typeface-amatic-sc")
 
-// window.__forceSmoothScrollPolyfill__ = true;
-// // kick off the polyfill!
-// smoothscroll.polyfill();
-
 export default function Layout({ pageTitle, children }) {
 
     // total # of frames for scrolling animations
-    const frameCount = 600 + 400 * projects.length
+    const frameCount = 600 + 400
 
-    function setFrameIndex(idx) {
+    function setFrameIndex(section) {
         const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
+        console.log(section);
+        let idx;
+        if (section) idx = 360;
+        else idx = 0;
         const scrollFraction = idx / frameCount;
         const scrollTop = maxScrollTop * scrollFraction;
         window.scroll({top: scrollTop, behavior: "smooth"});
+        // if (section) {
+        //     console.log(section);
+        //     const element = document.getElementById(`${section}`);
+        //     console.log(element);
+        //     element.scrollIntoView();
+        // }
         document.documentElement.style.overflow = "scroll";
     }
 
@@ -61,7 +64,6 @@ export default function Layout({ pageTitle, children }) {
                 <main>
                     {children}
                 </main>
-                {/* <Footer /> */}
             </div>
         </Fragment>
     )
