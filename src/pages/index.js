@@ -15,8 +15,6 @@ export default function Home(props) {
 
     // total # of frames we will run through
     const frameCount = 1000 + 400 * projects.length
-
-    let switchIdx = -5000;
   
     // update header in DOM based on current frame (index)
     function updateHeader(idx) {
@@ -74,13 +72,17 @@ export default function Home(props) {
             nav.style.position = "relative";
             nav.style.top = "0";
             nav.style.right = "0";
+            nav.style.height = "max-content";
             buttons.forEach(button => {
                 button.style.fontSize = "35px";
                 button.style.margin = "0 50px";
+                button.style.width = "max-content";
+                button.style.padding = "1px 6px";
+
             })
         // reintroduce nav buttons to right of header
         } else if (idx > 60) {
-            nav.style.display = "flex";
+            nav.style.display = "block";
             nav.style.margin = "0";
             nav.style.position = "absolute";
             nav.style.top = "25%";
@@ -103,7 +105,7 @@ export default function Home(props) {
       const highestIdx = 350;
       const idx = (frame - 160);
 
-      console.log(`idx: ${idx}`);
+      // console.log(`idx: ${idx}`);
       // console.log(`lowestIdx for ${id}: ${lowestIdx}`);
       // console.log(`highestIdx for ${id}: ${highestIdx}`);
       // console.log(`Project idx for ${id}: ${idx}`);
@@ -118,11 +120,11 @@ export default function Home(props) {
       const indexHeight = index.scrollHeight;
       const projectHeight = project.scrollHeight;
 
-      console.log(`indexHeight: ${indexHeight}`);
+      // console.log(`indexHeight: ${indexHeight}`);
   
       scrollSpace.style.height = `calc(${indexHeight}px + ${projectHeight}px`;
 
-      console.log(`scrollSpaceHeight: ${scrollSpace.scrollHeight}`)
+      // console.log(`scrollSpaceHeight: ${scrollSpace.scrollHeight}`)
   
       if (idx < lowestIdx) {
         project.style.opacity = "0";
@@ -144,13 +146,7 @@ export default function Home(props) {
       }
 
       if (idx < highestIdx - 150 && idx > highestIdx - 160) {
-        console.log("time to get value");
         indexTop = window.scrollY;
-      }
-
-      if (idx > highestIdx - 150 && idx < highestIdx - 145) {
-        switchIdx = idx;
-        console.log(`setting switchIdx: ${switchIdx}`);
       }
 
       if (idx > highestIdx - 150 ) {
@@ -162,10 +158,6 @@ export default function Home(props) {
         for (let projectDiv of allProjects) {
           projectDiv.style.opacity = "1";
         }
-      }
-
-      if (idx < switchIdx) {
-        console.log("GO BACK");
       }
 
       if (idx < highestIdx - 150) {
@@ -227,13 +219,14 @@ export default function Home(props) {
         } else if (idx < 30) {
             header.style.zIndex = "50";
             subtitle.style.display = "block";
-            nav.style.display = "flex";
+            nav.style.display = "block";
             nav.style.margin = "20px 0 23vh 0";
             nav.style.position = "relative";
             nav.style.flexDirection = "column";
             nav.style.alignItems = "center";
             nav.style.top = "0";
             nav.style.right = "0";
+            nav.style.height = "max-content";
             buttons.forEach(button => {
                 button.style.fontSize = "20px";
                 button.style.margin = "5% 0";
@@ -268,7 +261,7 @@ export default function Home(props) {
         console.log(`maxScrollTop: ${maxScrollTop}`);
         // how much has been scrolled from 0 to 1
         const scrollFraction = scrollTop / maxScrollTop;
-        console.log(`scrollFraction: ${scrollFraction}`);
+        // console.log(`scrollFraction: ${scrollFraction}`);
         // get corresponding frame # based on scroll fraction
         const frameIndex = Math.min(
             frameCount - 1,
@@ -276,7 +269,6 @@ export default function Home(props) {
         );
         console.log(`frameIndex: ${frameIndex}`)
         console.log("_____________");
-        // setFrameIndex(frameIndex);
         return frameIndex;
     }
   
@@ -301,7 +293,13 @@ export default function Home(props) {
   
     // once header is loaded, set up scrolling listener
     useEffect(() => {    
-        console.log("use Effect Scroll")
+        console.log("use Effect Scroll");
+        const project = document.querySelector(`#project1`);
+        const index = document.querySelector(`.index`);
+        const indexHeight = index.scrollHeight;
+        const projectHeight = project.scrollHeight;
+        const scrollSpace = document.querySelector(`#scrollSpace`);
+        scrollSpace.style.height = `calc(${indexHeight}px + ${projectHeight}px`;
         window.addEventListener('scroll', () => { render() })
     }, [])
 

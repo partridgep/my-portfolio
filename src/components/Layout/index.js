@@ -19,20 +19,34 @@ export default function Layout({ pageTitle, children }) {
 
     function setFrameIndex(section) {
         const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
-        console.log(section);
-        let idx;
-        if (section) idx = 360;
-        else idx = 0;
-        const scrollFraction = idx / frameCount;
-        const scrollTop = maxScrollTop * scrollFraction;
-        window.scroll({top: scrollTop, behavior: "smooth"});
-        // if (section) {
-        //     console.log(section);
-        //     const element = document.getElementById(`${section}`);
-        //     console.log(element);
-        //     element.scrollIntoView();
-        // }
-        document.documentElement.style.overflow = "scroll";
+        let idx, scrollTop, allProjectsHeight;
+        idx = 163.5;
+        if (!section) {
+            idx = 0;
+            window.scroll({top: 0, behavior: "smooth"});
+        } 
+        else {
+            idx = 163.5;
+            const scrollFraction = idx / frameCount;
+            const allProjects = document.querySelectorAll(`.project`);
+            const aboutHeight = document.querySelector(`#about`).scrollHeight;
+            let allProjectsArray = [];
+            for (let project of allProjects) {
+                allProjectsArray.push(project);
+                allProjectsHeight = allProjectsArray.map(project => project.scrollHeight).reduce((projectHeight, currentValue) => projectHeight + currentValue);
+            }
+            if (section === "project1") {
+                scrollTop = maxScrollTop * scrollFraction;
+            }
+            if (section === "about") {
+                scrollTop = allProjectsHeight + maxScrollTop * scrollFraction;
+            }
+            else if (section === "contact") {
+                scrollTop = aboutHeight + allProjectsHeight + maxScrollTop * scrollFraction;
+            }
+            console.log(`idx: ${idx}`);
+            window.scroll({top: scrollTop, behavior: "smooth"});
+        }
     }
 
     const data = useStaticQuery(graphql`
