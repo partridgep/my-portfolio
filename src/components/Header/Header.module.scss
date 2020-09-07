@@ -112,6 +112,24 @@
     }
 }
 
+.highlightedButton {
+    text-decoration: underline;
+}
+
+.highlightedButton:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    bottom: -15px;
+    left: 0;
+    background-color: #00627a;
+    visibility: visible;
+    transform: scaleX(1);
+    transition: all 0.2s ease-in-out 0s;
+    z-index: 500;
+}
+
 .big {
 
     h1 {

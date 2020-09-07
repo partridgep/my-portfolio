@@ -119,6 +119,7 @@ export default function Home(props) {
 
       const indexHeight = index.scrollHeight;
       const projectHeight = project.scrollHeight;
+      const workButton = document.querySelectorAll("nav > button")[0];
 
       // console.log(`indexHeight: ${indexHeight}`);
   
@@ -133,6 +134,7 @@ export default function Home(props) {
         for (let projectDiv of allProjects) {
           projectDiv.style.opacity = "0";
         }
+        workButton.style.color = "#00627a";
       }
       
       else if (idx > lowestIdx) {
@@ -143,6 +145,7 @@ export default function Home(props) {
           projectText.style.transform = `translateX(${xTranslation * -1}px)`;
           projectImage.style.transform = `translateX(${xTranslation }px)`;
         }
+        workButton.style.color = "#023e4d";
       }
 
       if (idx < highestIdx - 150 && idx > highestIdx - 160) {
@@ -251,14 +254,47 @@ export default function Home(props) {
         }
     }
 
+    function findCurrentSection() {
+      const scrollTop = window.scrollY;
+      const project1Height = document.querySelector(`#project1`).scrollHeight;
+      const aboutHeight = document.querySelector(`#about`).scrollHeight;
+      const allProjects = document.querySelectorAll(`.project`);
+      let allProjectsHeight, allProjectsArray = [];
+      for (let project of allProjects) {
+          allProjectsArray.push(project);
+          allProjectsHeight = allProjectsArray.map(project => project.scrollHeight).reduce((projectHeight, currentValue) => projectHeight + currentValue);
+      }
+      const buttons = document.querySelectorAll("nav > button");
+      const workButton = buttons[0];
+      const aboutButton = buttons[1];
+      const contactButton = buttons[2];
+      if (scrollTop < project1Height) {
+        aboutButton.style.color = "#00627a";
+        contactButton.style.color = "#00627a";
+      }
+      else if (scrollTop < allProjectsHeight) {
+        aboutButton.style.color = "#00627a";
+      }
+      else if (scrollTop < allProjectsHeight + aboutHeight) {
+        aboutButton.style.color = "#023e4d";
+        workButton.style.color = "#00627a";
+        contactButton.style.color = "#00627a";
+      }
+      else {
+        contactButton.style.color = "#023e4d";
+        aboutButton.style.color = "#00627a";
+        workButton.style.color = "#00627a";
+      }
+  }
+
     function getFrameIndex() {
         // current scroll index
         const scrollTop = window.scrollY;
-        console.log(`scrollTop: ${scrollTop}`);
-        console.log(`scrollHeight: ${document.documentElement.scrollHeight}`);
+        // console.log(`scrollTop: ${scrollTop}`);
+        // console.log(`scrollHeight: ${document.documentElement.scrollHeight}`);
         // total amount of scroll available
         const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
-        console.log(`maxScrollTop: ${maxScrollTop}`);
+        // console.log(`maxScrollTop: ${maxScrollTop}`);
         // how much has been scrolled from 0 to 1
         const scrollFraction = scrollTop / maxScrollTop;
         // console.log(`scrollFraction: ${scrollFraction}`);
@@ -267,8 +303,8 @@ export default function Home(props) {
             frameCount - 1,
             Math.ceil(scrollFraction * frameCount)
         );
-        console.log(`frameIndex: ${frameIndex}`)
-        console.log("_____________");
+        // console.log(`frameIndex: ${frameIndex}`)
+        // console.log("_____________");
         return frameIndex;
     }
   
@@ -279,16 +315,17 @@ export default function Home(props) {
         let frameIndex = getFrameIndex();
         // console.log(frameIndex);
             
-            if (window.innerWidth < breakpoint) {
-                //update header MOBILE VERSION
-                updateHeaderMobile(frameIndex / 2 );
-            }
-            else {
-                // update header in DOM based on current frame index
-                updateHeader(frameIndex / 2);
-            }
-            // fade in rest of indexPage
-            fadeInPage(frameIndex);
+        if (window.innerWidth < breakpoint) {
+            //update header MOBILE VERSION
+            updateHeaderMobile(frameIndex / 2 );
+        }
+        else {
+            // update header in DOM based on current frame index
+            updateHeader(frameIndex / 2);
+        }
+        // fade in rest of indexPage
+        fadeInPage(frameIndex);
+        findCurrentSection();
     }
   
     // once header is loaded, set up scrolling listener
