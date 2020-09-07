@@ -1,0 +1,16 @@
+.ProjectPresentation {
+    position: relative;
+    top: 115px;
+    min-height: calc(100vh - 165px);
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        text-transform: uppercase;
+        color: #00627a;
+        letter-spacing: 10px;
+        font-size: 50px;
+        margin: 8vh 0 5vh 3vw;
+        width: max-content;
+    }
+}

@@ -1,0 +1,29 @@
+.ProjectBanner {
+    height: 50px;
+    position: relative;
+    top: 115px;
+    background-color: rgb(196, 188, 144);
+    color: white;
+    overflow-x: scroll;
+    z-index: 1;
+
+    ul {
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0;
+
+        li {
+            margin-bottom: 0;
+            list-style-type: none;
+            font-family: Alata;
+            
+            a {
+                color: rgb(85, 85, 85);
+                text-decoration: none;
+            }
+
+        }
+    }
+}

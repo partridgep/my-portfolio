@@ -10,6 +10,8 @@ import projects from '../content/projects'
 
 export default function Home(props) {
 
+    console.log(props.location.state);
+    
     // for media queries, max window width
     const breakpoint = 832
 
@@ -18,6 +20,7 @@ export default function Home(props) {
   
     // update header in DOM based on current frame (index)
     function updateHeader(idx) {
+
 
         if (idx > 100) idx = 100;
 
@@ -150,6 +153,7 @@ export default function Home(props) {
 
       if (idx < highestIdx - 150 && idx > highestIdx - 160) {
         indexTop = window.scrollY;
+        console.log(indexTop);
       }
 
       if (idx > highestIdx - 150 ) {
@@ -254,7 +258,7 @@ export default function Home(props) {
         }
     }
 
-    function findCurrentSection() {
+    function highlightSectionInNav() {
       const scrollTop = window.scrollY;
       const project1Height = document.querySelector(`#project1`).scrollHeight;
       const aboutHeight = document.querySelector(`#about`).scrollHeight;
@@ -325,7 +329,7 @@ export default function Home(props) {
         }
         // fade in rest of indexPage
         fadeInPage(frameIndex);
-        findCurrentSection();
+        highlightSectionInNav();
     }
   
     // once header is loaded, set up scrolling listener

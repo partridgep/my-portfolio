@@ -3,8 +3,6 @@ import {Link} from "gatsby"
 
 import styles from './Header.module.scss'
 
-import projects from '../../content/projects'
-
 export default function Header({ title, size, setFrameIndex }) {
 
     return(
@@ -21,9 +19,9 @@ export default function Header({ title, size, setFrameIndex }) {
             </nav>
             :
             <nav>
-                <Link to="/#work" onClick={() => setFrameIndex(360)}><button>My Work</button></Link>
-                <Link to="/" onClick={() => setFrameIndex(360 * (projects.length + 1))}><button>About</button></Link>
-                <Link to="/" onClick={() => setFrameIndex(360 * (projects.length + 2))}><button>Contact Me</button></Link>
+                <Link to="/" state={{ section: "project1" }} ><button>My Work</button></Link>
+                <Link to="/" state={{ section: "about" }} ><button>About</button></Link>
+                <Link to="/" state={{ section: "contact" }} ><button>Contact Me</button></Link>
             </nav>
         }
         </header>
