@@ -7,7 +7,6 @@ export default function ProjectPresentation({ project }) {
 
     return(
         <div className={styles.ProjectPresentation}>
-            <h1>{project.name}</h1>
 
             <MainPanel project={project} />
 

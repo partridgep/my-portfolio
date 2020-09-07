@@ -1,5 +1,37 @@
 .MainPanel {
     display: flex;
     flex-direction: column;
-    margin-left: 3vw;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    .screenshotWrapper {
+        position: relative;
+        max-height: max-content;
+        width: 90vw;
+        min-width: 400px;
+        margin: 0 2% 0 40px;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .screenshots {
+        top: 0;
+        min-width: 100%;
+        height: max-content;
+        margin: 0;
+        padding: 0;
+        transition: opacity 0.2s;
+    }
+    
+    .screenshots:nth-child(1) {
+        position: absolute;
+    }
+    .screenshots:nth-child(2) {
+        position: relative;
+        top: -100%;
+        z-index: -1;
+    }
 }
