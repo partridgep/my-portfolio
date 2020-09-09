@@ -1,9 +1,13 @@
 import React from "react"
 import {Link} from "gatsby"
 
+import { navigate } from "@reach/router";
+
+import setFrameIndex from '../../utils/sectionLinks'
+
 import styles from './Header.module.scss'
 
-export default function Header({ title, size, setFrameIndex }) {
+export default function Header({ title, size}) {
 
     return(
         <header id = "header" className={`${styles.Header} ${styles[size]}`}>
@@ -20,7 +24,8 @@ export default function Header({ title, size, setFrameIndex }) {
             :
             <nav>
                 <Link to="/" state={{ section: "project1" }} ><button>My Work</button></Link>
-                <Link to="/" state={{ section: "about" }} ><button>About</button></Link>
+                {/* <Link to="/" state={{ section: "about" }} ><button>About</button></Link> */}
+                <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>About</button>
                 <Link to="/" state={{ section: "contact" }} ><button>Contact Me</button></Link>
             </nav>
         }

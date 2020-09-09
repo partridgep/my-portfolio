@@ -23,15 +23,88 @@
         height: max-content;
         margin: 0;
         padding: 0;
-        transition: opacity 0.2s;
     }
     
     .screenshots:nth-child(1) {
         position: absolute;
+        z-index: 7;
+        animation-name: cf4FadeInOut;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 23s;
+        animation-delay: 0s;
     }
     .screenshots:nth-child(2) {
         position: relative;
         top: -100%;
-        z-index: -1;
+        z-index: 6;
+        animation-name: cf4FadeInOut;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 23s;
+        animation-delay: -20s;
     }
+    
+    .screenshots:nth-child(3) {
+        z-index: 5;
+        animation-name: cf4FadeInOut;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 23s;
+        animation-delay: -17s;
+    }
+    
+    .screenshots:nth-child(4) {
+        z-index: 4;
+        animation-name: cf4FadeInOut;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 23s;
+        animation-delay: -14s;
+    }
+    
+    .screenshots:nth-child(5) {
+        z-index: 3;
+        animation-name: cf4FadeInOut;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 23s;
+        animation-delay: -11s;
+    }
+    .screenshots:nth-child(6) {
+        z-index: 2;
+        animation-name: cf4FadeInOut;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 23s;
+        animation-delay: -8s;
+    }
+    .screenshots:nth-child(7) {
+        z-index: 1;
+        animation-name: cf4FadeInOut;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 23s;
+        animation-delay: -5s;
+    }
+
+
 }
+
+@keyframes cf4FadeInOut {
+    0% {
+      opacity:1;
+    }
+    17% {
+      opacity:1;
+    }
+    25% {
+      opacity:0;
+    }
+    92% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }

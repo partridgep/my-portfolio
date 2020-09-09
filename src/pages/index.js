@@ -1,6 +1,8 @@
 import React, { useEffect } from "react"
 import { graphql } from 'gatsby';
 
+import setFrameIndex from '../utils/sectionLinks'
+
 import ScrollSpace from '../components/ScrollSpace'
 import Layout from '../components/Layout'
 import WorkProject from '../components/WorkProject'
@@ -9,8 +11,6 @@ import Index from '../components/Index'
 import projects from '../content/projects'
 
 export default function Home(props) {
-
-    console.log(props.location.state);
     
     // for media queries, max window width
     const breakpoint = 832
@@ -331,6 +331,20 @@ export default function Home(props) {
         fadeInPage(frameIndex);
         highlightSectionInNav();
     }
+
+    function checkSection() {
+      if (props.location.state.section) {
+        console.log("there is location state");
+        setFrameIndex(props.location.state.section);
+        // NEED TO REMOVE LOCATION STATE 
+        // FOR REFRESH
+        // props.history.replace('', null);
+        console.log(window.history.state)
+        // window.history.pushState(null);
+        window.history.state.section = null;
+        window.history.state.key = null;
+      }
+    }
   
     // once header is loaded, set up scrolling listener
     useEffect(() => {    
@@ -341,7 +355,14 @@ export default function Home(props) {
         const projectHeight = project.scrollHeight;
         const scrollSpace = document.querySelector(`#scrollSpace`);
         scrollSpace.style.height = `calc(${indexHeight}px + ${projectHeight}px`;
-        window.addEventListener('scroll', () => { render() })
+        window.addEventListener('scroll', render)
+
+        checkSection();
+
+        return function cleanUp() {
+          window.removeEventListener('scroll', render)
+        }
+
     }, [])
 
     // once header is loaded, set up resize listener
