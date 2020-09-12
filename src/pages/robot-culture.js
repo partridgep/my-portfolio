@@ -1,7 +1,10 @@
 import React from 'react'
+
+
 import Layout from '../components/Layout'
 import ProjectBanner from '../components/ProjectBanner'
 import ProjectPresentation from '../components/ProjectPresentation'
+import Functionality from '../components/Functionality'
 
 import { graphql } from 'gatsby';
 
@@ -26,12 +29,20 @@ export default function RobotCulture(props) {
         <Layout pageTitle="Robot Culture">
             <ProjectBanner selProject={robotCulture}/>
 
-            <ProjectPresentation project={robotCulture} 
-            />
+            <ProjectPresentation project={robotCulture} />
 
-            {/*
-            Icons of technologies
-            Section of functionalities */}
+            <div className="project-functionalities">
+              <h2>Functionalities</h2>
+              <ul>
+                <li>Full CRUD Features</li>
+                <li>Authentification via JWTs</li>
+                <li>Admin Privileges</li>
+                <li>Guided, Multi-Step Creation Form</li>
+                <li>Autocomplete Forms</li>
+                <li>Autocomplete with API data</li>
+              </ul>
+            </div>
+
         </Layout>
     )
 }

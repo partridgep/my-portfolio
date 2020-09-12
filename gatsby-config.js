@@ -23,6 +23,6 @@ module.exports = {
     `gatsby-transformer-sharp`, 
     `gatsby-plugin-sharp`,
     `gatsby-plugin-polyfill-io`,
-    `gatsby-plugin-smoothscroll`
+    `gatsby-plugin-smoothscroll`,
   ],
 }

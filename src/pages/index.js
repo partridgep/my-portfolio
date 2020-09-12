@@ -333,32 +333,40 @@ export default function Home(props) {
     }
 
     function checkSection() {
-      if (props.location.state.section) {
+      if (props.location.state && props.location.state.section) {
         console.log("there is location state");
         setFrameIndex(props.location.state.section);
-        // NEED TO REMOVE LOCATION STATE 
-        // FOR REFRESH
-        // props.history.replace('', null);
         console.log(window.history.state)
-        // window.history.pushState(null);
-        window.history.state.section = null;
-        window.history.state.key = null;
+        document.querySelector("#title").style.animation = "none";
+        // window.history.state.section = null;
+        // window.history.state.key = null;
       }
+    }
+
+    function setScrollSpaceheight() {
+      const project = document.querySelector(`#project1`);
+      const index = document.querySelector(`.index`);
+      const indexHeight = index.scrollHeight;
+      const projectHeight = project.scrollHeight;
+      const scrollSpace = document.querySelector(`#scrollSpace`);
+      scrollSpace.style.height = `calc(${indexHeight}px + ${projectHeight}px`;
     }
   
     // once header is loaded, set up scrolling listener
-    useEffect(() => {    
-        console.log("use Effect Scroll");
-        const project = document.querySelector(`#project1`);
-        const index = document.querySelector(`.index`);
-        const indexHeight = index.scrollHeight;
-        const projectHeight = project.scrollHeight;
-        const scrollSpace = document.querySelector(`#scrollSpace`);
-        scrollSpace.style.height = `calc(${indexHeight}px + ${projectHeight}px`;
+    useEffect(() => {
+        // make sure we always begin at start of page on refresh    
+        window.scrollTo(0, 0);
+
+        // set scrolling space equal to height of all sections
+        setScrollSpaceheight();
+        
+        // set up event scrolling listener for animations
         window.addEventListener('scroll', render)
 
+        // check if coming from previous page, telling us to go to a section
         checkSection();
 
+        // on page leave, remove event listener
         return function cleanUp() {
           window.removeEventListener('scroll', render)
         }
@@ -367,7 +375,13 @@ export default function Home(props) {
 
     // once header is loaded, set up resize listener
     useEffect(() => {    
-        window.addEventListener('resize', () => { render() })
+        window.addEventListener('resize', render)
+
+        // on page leave, remove event listener
+        return function cleanUp() {
+          window.removeEventListener('resize', render)
+        }
+
     }, [])
 
   const projectComponents = projects.map(project =>

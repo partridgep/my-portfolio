@@ -23,10 +23,12 @@ export default function Header({ title, size}) {
             </nav>
             :
             <nav>
-                <Link to="/" state={{ section: "project1" }} ><button>My Work</button></Link>
+                {/* <Link to="/" state={{ section: "project1" }} ><button>My Work</button></Link> */}
                 {/* <Link to="/" state={{ section: "about" }} ><button>About</button></Link> */}
+                {/* <Link to="/" state={{ section: "contact" }} ><button>Contact Me</button></Link> */}
+                <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "project1"}}>My Work</button>
                 <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>About</button>
-                <Link to="/" state={{ section: "contact" }} ><button>Contact Me</button></Link>
+                <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>Contact Me</button>
             </nav>
         }
         </header>

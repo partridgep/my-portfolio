@@ -624,3 +624,12 @@ html {
       font-size: 100%;
     }
   }
+
+.project-functionalities {
+  position: relative;
+  top: 115px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2em;
+}

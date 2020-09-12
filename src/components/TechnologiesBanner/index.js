@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faReact, faJsSquare, faCss3Alt, faNode } from '@fortawesome/free-brands-svg-icons'
-import DevIcon from "devicon-react-svg";
+// import DevIcon from "devicon-react-svg";
 
 import styles from './TechnologiesBanner.module.scss'
 
