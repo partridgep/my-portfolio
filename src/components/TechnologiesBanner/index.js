@@ -1,10 +1,11 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReact, faJsSquare, faCss3Alt, faNode, faPython, faAws } from '@fortawesome/free-brands-svg-icons'
+import { faReact, faJsSquare, faCss3Alt, faNode, faPython, faAws, faHtml5 } from '@fortawesome/free-brands-svg-icons'
 import MongoIcon from "../../assets/mongodb.svg";
 import ExpressIcon from "../../assets/express.svg";
 import DjangoIcon from "../../assets/django.svg";
 import PostgreSQLIcon from "../../assets/postgresql.svg";
+import JqueryIcon from "../../assets/jquery.svg";
 
 import styles from './TechnologiesBanner.module.scss'
 
@@ -40,6 +41,12 @@ export default function TechnologiesBanner({ technologies }) {
         }
         else if (tech === "PostgreSQL") {
             return <PostgreSQLIcon  className={styles.icon} style={{fill: "white", height: "45px"}} />
+        }
+        else if (tech === "HTML") {
+            return <FontAwesomeIcon icon={ faHtml5 } className={styles.icon} aria-label="React"/>
+        }
+        else if (tech === "jQuery") {
+            return <JqueryIcon className={styles.icon} style={{fill: "white", height: "45px", width: "45px"}} />
         }
     }
 

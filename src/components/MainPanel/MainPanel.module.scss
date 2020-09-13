@@ -7,6 +7,11 @@
     flex-grow: 1;
     flex-shrink: 0;
 
+    h1 {
+      max-width: 90vw;
+      text-align: center;
+    }
+
     .screenshotWrapper {
         position: relative;
         max-height: max-content;
@@ -112,7 +117,7 @@
   .MainPanel {
     
     h1 {
-      font-size: 35px;
+      font-size: 30px;
       max-width: 85vw;
       text-align: center;
     }
