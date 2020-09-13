@@ -24,5 +24,13 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-polyfill-io`,
     `gatsby-plugin-smoothscroll`,
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/ 
+        }
+      }
+    }
   ],
 }

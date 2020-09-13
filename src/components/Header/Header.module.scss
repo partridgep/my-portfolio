@@ -215,4 +215,41 @@
             }
         }
     }
+
+    .small {
+        height: 70px;
+
+        div {
+            width: 160px;
+            margin-left: 18.75%;
+
+        }
+
+        h1 {
+            font-size: 20px;
+            height: 70px;
+            line-height: 20px;
+            padding: 20px;
+            width: 160px;
+        }
+
+        nav {
+            display: flex;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            right: 2%;
+            height: 100%;
+            flex-direction: row;
+
+            button {
+                font-size: 13px;
+                margin: 0;
+                width: max-content;
+                padding: 15px;
+                
+            }
+        }
+
+    }
 }

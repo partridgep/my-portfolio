@@ -4,7 +4,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import ProjectBanner from '../components/ProjectBanner'
 import ProjectPresentation from '../components/ProjectPresentation'
-import Functionality from '../components/Functionality'
+import Fade from 'react-reveal/Fade';
 
 import { graphql } from 'gatsby';
 
@@ -22,7 +22,7 @@ export default function RobotCulture(props) {
         userPage: props.data.RobotCulture_Presentation_UserPage.childImageSharp.fluid,
         addPage: props.data.RobotCulture_Presentation_AddPage.childImageSharp.fluid,
         addPage2: props.data.RobotCulture_Presentation_AddPage2.childImageSharp.fluid,
-        technologies: ['REACT', 'JS', 'CSS', 'MongoDB', 'Node.js']
+        technologies: ['REACT', 'JS', 'CSS', 'MongoDB', 'Express', 'Node.js']
     };
 
     return (
@@ -31,17 +31,18 @@ export default function RobotCulture(props) {
 
             <ProjectPresentation project={robotCulture} />
 
-            <div className="project-functionalities">
-              <h2>Functionalities</h2>
-              <ul>
-                <li>Full CRUD Features</li>
-                <li>Authentification via JWTs</li>
-                <li>Admin Privileges</li>
-                <li>Guided, Multi-Step Creation Form</li>
-                <li>Autocomplete Forms</li>
-                <li>Autocomplete with API data</li>
-              </ul>
-            </div>
+            <Fade>
+              <div className="project-functionalities">
+                <h2>Functionalities</h2>
+                <ul>
+                  <li>Full CRUD Features</li>
+                  <li>Authentification via JWTs</li>
+                  <li>Admin Privileges</li>
+                  <li>Guided, Multi-Step Creation Form</li>
+                  <li>Form Autocompletion using API data</li>
+                </ul>
+              </div>
+            </Fade>
 
         </Layout>
     )

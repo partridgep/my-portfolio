@@ -108,3 +108,25 @@
       opacity:1;
     }
   }
+
+@media(max-width: 832px) {
+
+  .MainPanel {
+    
+    h1 {
+      font-size: 35px;
+      max-width: 85vw;
+      text-align: center;
+    }
+
+    .screenshotWrapper {
+      width: 95vw;
+      min-width: 150px;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+  }
+
+}

@@ -20,11 +20,11 @@ export default function ProjectBlurb({ githubLink, liveLink, blurb, technologies
                 <a href={liveLink} target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faWindowMaximize} className={styles.reveal} aria-label="Live Project"/><p>View live project</p></a>
             </Parallax>
 
-            <Parallax y={[0, -60]} styleInner={{display: "flex", flexDirection: "column"}}>
+            <Parallax y={[0, -20]} styleInner={{display: "flex", flexDirection: "column"}}>
                 <section>{blurb}</section>
             </Parallax>
 
-            <Fade bottom>
+            <Fade>
                 <TechnologiesBanner technologies={technologies} />
             </Fade>
 

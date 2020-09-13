@@ -1,7 +1,8 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faReact, faJsSquare, faCss3Alt, faNode } from '@fortawesome/free-brands-svg-icons'
-// import DevIcon from "devicon-react-svg";
+import MongoIcon from "../../assets/mongodb.svg";
+import ExpressIcon from "../../assets/express.svg";
 
 import styles from './TechnologiesBanner.module.scss'
 
@@ -20,9 +21,12 @@ export default function TechnologiesBanner({ technologies }) {
         else if (tech === "Node.js") {
             return <FontAwesomeIcon icon={ faNode } className={styles.icon} aria-label="React"/>
         }
-        // else if (tech === "MongoDB") {
-        //     return <DevIcon icon="mongodb" style={{fill: "white", height: "45px",}} />
-        // }
+        else if (tech === "MongoDB") {
+            return <MongoIcon className={styles.icon} style={{fill: "white", height: "45px"}} />
+        }
+        else if (tech === "Express") {
+            return <ExpressIcon  className={styles.icon} style={{fill: "white", height: "45px"}} />
+        }
     }
 
     return(

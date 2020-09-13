@@ -632,4 +632,37 @@ html {
   flex-direction: column;
   justify-content: center;
   margin: 2em;
+  font-family: Alata;
+  background: linear-gradient(rgb(240, 241, 171), rgb(229, 217, 245));
+  border-radius: 15px;
+  padding: 2em 2em 1em 2em;
+  box-shadow: 1px -4px 88px -41px rgba(0,0,0,0.75);
+}
+
+.project-functionalities h2 {
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+}
+
+.project-functionalities li {
+  font-size: 1.3rem;
+  line-height: 2.5rem;
+}
+
+@media(max-width: 832px) {
+
+  .project-functionalities {
+    top: 70px;
+    margin: 1.3em;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    li {
+      font-size: .95rem;
+    }
+  }
+
+
 }

@@ -14,3 +14,15 @@
         width: max-content;
     }
 }
+
+@media(max-width: 832px) {
+
+    .ProjectPresentation {
+        top: 70px;
+
+        h1 {
+            margin: 5vh 0 2vh 0;
+        }
+    }
+
+}
