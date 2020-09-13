@@ -6,14 +6,13 @@ const frameCount = 600 + 400
 function setFrameIndex(section) {
     const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
     let idx, scrollTop, allProjectsHeight;
-    idx = 163.5;
     // if going all way back up
     if (!section) {
         idx = 0;
         window.scroll({top: 0, behavior: "smooth"});
     } 
     else {
-        idx = 164;
+        idx = 138;
         const scrollFraction = idx / frameCount;
         const allProjects = document.querySelectorAll(`.project`);
         const aboutHeight = document.querySelector(`#about`).scrollHeight;

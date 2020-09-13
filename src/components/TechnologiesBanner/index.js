@@ -1,8 +1,10 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReact, faJsSquare, faCss3Alt, faNode } from '@fortawesome/free-brands-svg-icons'
+import { faReact, faJsSquare, faCss3Alt, faNode, faPython, faAws } from '@fortawesome/free-brands-svg-icons'
 import MongoIcon from "../../assets/mongodb.svg";
 import ExpressIcon from "../../assets/express.svg";
+import DjangoIcon from "../../assets/django.svg";
+import PostgreSQLIcon from "../../assets/postgresql.svg";
 
 import styles from './TechnologiesBanner.module.scss'
 
@@ -26,6 +28,18 @@ export default function TechnologiesBanner({ technologies }) {
         }
         else if (tech === "Express") {
             return <ExpressIcon  className={styles.icon} style={{fill: "white", height: "45px"}} />
+        }
+        else if (tech === "Python") {
+            return <FontAwesomeIcon icon={ faPython } className={styles.icon} aria-label="React"/>
+        }
+        else if (tech === "AWS") {
+            return <FontAwesomeIcon icon={ faAws } className={styles.icon} aria-label="React"/>
+        }
+        else if (tech === "Django") {
+            return <DjangoIcon viewBox="0 0 70 70" style={{fill: "white", height: "45px", width: "45px"}} />
+        }
+        else if (tech === "PostgreSQL") {
+            return <PostgreSQLIcon  className={styles.icon} style={{fill: "white", height: "45px"}} />
         }
     }
 

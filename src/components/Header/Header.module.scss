@@ -23,6 +23,7 @@
         max-width: 600px;
         margin: 0 auto 0 50%;
         transform: translateX(-50%);
+        cursor: pointer;
     }
 
     h1 {
@@ -140,9 +141,16 @@
 .small {
     height: 115px;
 
-    div {
+    // div {
+    //     width: 350px;
+    //     margin-left: calc(50% - 28.57%);
+    // }
+
+    a {
         width: 350px;
-        margin-left: calc(50% - 28.57%);
+        margin: 0 auto 0 calc(50% - 28.57%);
+        transform: translateX(-50%);
+        text-decoration: none;
     }
 
     h1 {
@@ -152,6 +160,7 @@
         padding: 20px;
         width: 350px;
         margin-left: 0;
+        margin-bottom: 0;
     }
 
     h2 {
@@ -219,7 +228,7 @@
     .small {
         height: 70px;
 
-        div {
+        a {
             width: 160px;
             margin-left: 18.75%;
 
@@ -246,7 +255,7 @@
                 font-size: 13px;
                 margin: 0;
                 width: max-content;
-                padding: 15px;
+                padding: 3px;
                 
             }
         }

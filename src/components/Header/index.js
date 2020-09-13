@@ -11,7 +11,11 @@ export default function Header({ title, size}) {
 
     return(
         <header id = "header" className={`${styles.Header} ${styles[size]}`}>
+            {size === "big" ?
                 <div id="title_container" onClick={() => setFrameIndex(0)}><h1 id = "title">{title}</h1></div>
+                :
+                <Link to="/" id="title_container" onClick={() => setFrameIndex(0)}><h1 id = "title">{title}</h1></Link>
+            }
                 <h2 id="subtitle" >
                     Full-Stack Software Engineer chasing the <span>endorphin</span> rush that comes from merging the <span>creative</span> and the <span>logical</span> to effectively problem-solve
                 </h2>

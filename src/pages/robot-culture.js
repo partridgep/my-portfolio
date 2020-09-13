@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import Layout from '../components/Layout'
 import ProjectBanner from '../components/ProjectBanner'
 import ProjectPresentation from '../components/ProjectPresentation'

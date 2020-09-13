@@ -460,5 +460,19 @@ export const pageQuery = graphql`
           }
         }
       }
+      project4_image1: file(relativePath: { eq: "project4_image1.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      project4_image2: file(relativePath: { eq: "project4_image2.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
   }
 `;
