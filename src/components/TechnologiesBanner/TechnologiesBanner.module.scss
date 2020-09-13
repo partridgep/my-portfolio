@@ -51,9 +51,16 @@
 
 @media(max-width: 832px) {
 
-    .icon {
-        font-size: 20px;
-        margin: 0 2rem;
+
+    .TechnologiesBanner {
+
+        .icon {
+            margin: 0 1rem;
+        }
+    
+        .TechIcons {
+            width: 95vw;
+        }
     }
 
 }
