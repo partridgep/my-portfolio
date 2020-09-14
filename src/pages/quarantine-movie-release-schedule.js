@@ -13,7 +13,7 @@ export default function QRMS(props) {
         name: "Quarantine Movie Release Schedule",
         githubLink: "https://github.com/partridgep/partridgep.github.io",
         liveLink: "https://partridgep.github.io/",
-        blurb: <p><span>Why Movies? </span>I come from a documentary film background, so I wanted to create a sort of tribute to the lost movie release year of 2020, as well as document all the shifts and changes of the schedule visually. Pulling that data from APIs and and representing it on the page via DOM manipulation provided an excellent challenge before jumping into non-static websites.</p>,
+        blurb: <p><span>Why Movies? </span>I come from a documentary film background, so I wanted to create a sort of tribute to the lost movie release year of 2020, as well as document all the shifts and changes of the schedule visually. Pulling that data from APIs and representing it on the page via DOM manipulation provided an excellent challenge before jumping into non-static websites.</p>,
         landingPage: props.data.QMRS_Presentation_LandingPage.childImageSharp.fluid,
         selectionPage: props.data.QMRS_Presentation_DetailPage.childImageSharp.fluid,
         detailPage: props.data.QMRS_Presentation_DelayedPage.childImageSharp.fluid,
