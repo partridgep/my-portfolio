@@ -12,7 +12,7 @@ export default function BugTracker(props) {
     const bugTracker = {
         name: "BugTracker",
         githubLink: "https://github.com/partridgep/bugtracker",
-        liveLink: "https://git.heroku.com/bugtracker-pp.git",
+        liveLink: "https://bugtracker-pp.herokuapp.com/",
         blurb: <p><span>Why Bugs? </span>Writing code in an organized fashion is a necessity, and doubly so when working in teams. I wanted to build a tool that would be useful to people I would collaborate with on a day-to-day basis. The ease and simplicity of Django was something that pleasantly suprised me, allowing me to get the app running in a short span of time.</p>,
         landingPage: props.data.BugTracker_Presentation_LoginPage.childImageSharp.fluid,
         selectionPage: props.data.BugTracker_Presentation_LandingPage.childImageSharp.fluid,
