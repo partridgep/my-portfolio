@@ -25,7 +25,7 @@ export default function QRMS(props) {
     };
 
     return (
-        <Layout pageTitle="Ice Cream Selector">
+        <Layout pageTitle="Quarantine Movie Release Schedule">
             <ProjectBanner selProject={qrms}/>
 
             <ProjectPresentation project={qrms} />
