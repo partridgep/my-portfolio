@@ -6,6 +6,11 @@ const frameCount = 600 + 400
 function setFrameIndex(section) {
     const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
     let idx, scrollTop, allProjectsHeight;
+    let timeout = 420;
+    if (window.innerHeight > 1100) {
+        console.log("big window");
+        timeout = 500;
+    }
     // if going all way back up
     if (!section) {
         idx = 0;
@@ -50,7 +55,8 @@ function setFrameIndex(section) {
         // else wait until scrolled into work section
         // and scroll configurations are correct
         // to scroll to desired sections
-        else (setTimeout(function(){ window.scroll({top: scrollTop, behavior: "smooth"}); }, 500));
+
+        else (setTimeout(function(){ window.scroll({top: scrollTop, behavior: "smooth"}); }, timeout));
     }
 }
 
