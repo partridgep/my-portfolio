@@ -3,6 +3,8 @@ import { graphql } from 'gatsby';
 
 import setFrameIndex from '../utils/sectionLinks'
 
+import Fade from 'react-reveal/Fade';
+
 import ScrollSpace from '../components/ScrollSpace'
 import Layout from '../components/Layout'
 import WorkProject from '../components/WorkProject'
@@ -385,6 +387,8 @@ export default function Home(props) {
     }, [])
 
   const projectComponents = projects.map(project =>
+    project.id === 1 
+    ?
     <div key={project.id} >
         <WorkProject 
           name = {project.name}
@@ -394,6 +398,18 @@ export default function Home(props) {
           secondaryScreenshot={props.data[`project${project.id}_image2`].childImageSharp.fluid}
         />
     </div>
+    :
+      <div key={project.id} >
+        <Fade>
+          <WorkProject 
+            name = {project.name}
+            id={project.id}
+            description={project.description}
+            mainScreenshot={props.data[`project${project.id}_image1`].childImageSharp.fluid}
+            secondaryScreenshot={props.data[`project${project.id}_image2`].childImageSharp.fluid}
+          />
+        </Fade>
+      </div>
     )
 
   return (
