@@ -50,7 +50,7 @@ function setFrameIndex(section) {
         // else wait until scrolled into work section
         // and scroll configurations are correct
         // to scroll to desired sections
-        else (setTimeout(function(){ window.scroll({top: scrollTop, behavior: "smooth"}); }, 415));
+        else (setTimeout(function(){ window.scroll({top: scrollTop, behavior: "smooth"}); }, 500));
     }
 }
 
