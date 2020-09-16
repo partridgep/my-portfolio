@@ -356,6 +356,7 @@ export default function Home(props) {
   
     // once header is loaded, set up scrolling listener
     useEffect(() => {
+        console.log("use effect");
         // make sure we always begin at start of page on refresh    
         window.scrollTo(0, 0);
 
