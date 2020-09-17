@@ -40,8 +40,9 @@ function setFrameIndex(section) {
         }
 
         if (section === "about") {
-            console.log("go to about");
+            console.log("go to about"); 
             scrollTop = allProjectsHeight + maxScrollTop * scrollFraction;
+            console.log('scrollTop')
         }
 
         else if (section === "contact") {

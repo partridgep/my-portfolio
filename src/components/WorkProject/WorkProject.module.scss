@@ -158,3 +158,11 @@
         margin: 3% auto 0 auto;
     }
 }
+
+@media(min-width: 1450px) and (max-height: 800px) {
+
+    .ProjectImages {
+        max-height: 100vh;
+    }
+
+}
