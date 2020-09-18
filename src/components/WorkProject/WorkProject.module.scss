@@ -68,7 +68,7 @@
 }
 
 .ProjectImages {
-    max-height: 60vh;
+    max-height: 70vh;
     display: flex;
     align-items: center;
     flex-shrink: 0;
@@ -159,10 +159,16 @@
     }
 }
 
-@media(min-width: 1450px) and (max-height: 800px) {
+@media(max-width: 1450px) and (max-height: 800px) {
 
     .ProjectImages {
         max-height: 100vh;
     }
+}
 
+@media(min-width: 1200px) and (min-height: 800px) and (max-height: 900px) {
+
+    .ProjectImages {
+        max-height: 75vh;
+    }
 }
