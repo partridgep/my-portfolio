@@ -632,6 +632,7 @@ html {
   flex-direction: column;
   justify-content: center;
   margin: 2em;
+  margin-bottom: 8rem;
   font-family: Alata;
   background: linear-gradient(rgb(240, 241, 171), rgb(229, 217, 245));
   border-radius: 15px;
@@ -653,7 +654,7 @@ html {
 
   .project-functionalities {
     top: 70px;
-    margin: 1.3em 1.3em 4em 1.3em;
+    margin: 1.3em 1.3em 6em 1.3em;
 
     h2 {
       font-size: 1rem;
