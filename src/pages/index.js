@@ -155,7 +155,7 @@ export default function Home(props) {
 
       if (idx < highestIdx - 150 && idx > highestIdx - 160) {
         indexTop = window.scrollY;
-        console.log(indexTop);
+        // console.log(indexTop);
       }
 
       if (idx > highestIdx - 150 ) {
@@ -336,9 +336,9 @@ export default function Home(props) {
 
     function checkSection() {
       if (props.location.state && props.location.state.section) {
-        console.log("there is location state");
+        // console.log("there is location state");
         setFrameIndex(props.location.state.section);
-        console.log(window.history.state)
+        // console.log(window.history.state)
         document.querySelector("#title").style.animation = "none";
         // window.history.state.section = null;
         // window.history.state.key = null;

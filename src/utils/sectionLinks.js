@@ -8,7 +8,7 @@ function setFrameIndex(section) {
     let idx, scrollTop, allProjectsHeight;
     let timeout = 420;
     if (window.innerHeight > 1100) {
-        console.log("big window");
+        // console.log("big window");
         timeout = 500;
     }
     // if going all way back up
@@ -29,20 +29,20 @@ function setFrameIndex(section) {
         }
         // if going to work section
         if (section === "project1") {
-            console.log("go to work");
+            // console.log("go to work");
             scrollTop = maxScrollTop * scrollFraction;
         }
         // if not, we'll have to go to work section first
         // to get all the right scroll configurations
         else if (scrollSpace.style.display === "" || scrollSpace.style.display === "block") {
-            console.log("go to work first");
+            // console.log("go to work first");
             window.scroll({top: maxScrollTop * scrollFraction + 1, behavior: "smooth"});
         }
 
         if (section === "about") {
-            console.log("go to about"); 
+            // console.log("go to about"); 
             scrollTop = allProjectsHeight + maxScrollTop * scrollFraction;
-            console.log('scrollTop')
+            // console.log('scrollTop')
         }
 
         else if (section === "contact") {

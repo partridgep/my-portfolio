@@ -18,7 +18,7 @@ export default function Prism(props) {
         userPage: null,
         addPage: props.data.Prism_MRTN_CartPage.childImageSharp.fluid,
         addPage2: props.data.Prism_MRTN_OrderSummaryPage.childImageSharp.fluid,
-        technologies: ['Vue.js', 'Tailwind']
+        technologies: ['Vue.js', 'Tailwind', 'JS', 'HTML']
     };
 
     return (
