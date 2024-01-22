@@ -1,11 +1,11 @@
 import React, { useEffect } from "react"
 import { graphql } from 'gatsby';
 
-import setFrameIndex from '../utils/sectionLinks'
+// import setFrameIndex from '../utils/sectionLinks'
 
 import Fade from 'react-reveal/Fade';
 
-import ScrollSpace from '../components/ScrollSpace'
+// import ScrollSpace from '../components/ScrollSpace'
 import Layout from '../components/Layout'
 import WorkProject from '../components/WorkProject'
 import Index from '../components/Index'
@@ -337,7 +337,7 @@ export default function Home(props) {
     function checkSection() {
       if (props.location.state && props.location.state.section) {
         // console.log("there is location state");
-        setFrameIndex(props.location.state.section);
+        // setFrameIndex(props.location.state.section);
         // console.log(window.history.state)
         document.querySelector("#title").style.animation = "none";
         // window.history.state.section = null;
@@ -345,14 +345,14 @@ export default function Home(props) {
       }
     }
 
-    function setScrollSpaceheight() {
-      const project = document.querySelector(`#project1`);
-      const index = document.querySelector(`.index`);
-      const indexHeight = index.scrollHeight;
-      const projectHeight = project.scrollHeight;
-      const scrollSpace = document.querySelector(`#scrollSpace`);
-      scrollSpace.style.height = `calc(${indexHeight}px + ${projectHeight}px`;
-    }
+    // function setScrollSpaceheight() {
+    //   const project = document.querySelector(`#project1`);
+    //   const index = document.querySelector(`.index`);
+    //   const indexHeight = index.scrollHeight;
+    //   const projectHeight = project.scrollHeight;
+    //   const scrollSpace = document.querySelector(`#scrollSpace`);
+    //   scrollSpace.style.height = `calc(${indexHeight}px + ${projectHeight}px`;
+    // }
   
     // once header is loaded, set up scrolling listener
     useEffect(() => {
@@ -360,10 +360,14 @@ export default function Home(props) {
         window.scrollTo(0, 0);
 
         // set scrolling space equal to height of all sections
-        setScrollSpaceheight();
+        // setScrollSpaceheight();
+
+        window.addEventListener('scroll', () => {
+          document.body.style.setProperty('--scroll', window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
+        }, false);
         
         // set up event scrolling listener for animations
-        window.addEventListener('scroll', render)
+        // window.addEventListener('scroll', render)
 
         // check if coming from previous page, telling us to go to a section
         checkSection();
@@ -376,20 +380,32 @@ export default function Home(props) {
     }, [])
 
     // once header is loaded, set up resize listener
-    useEffect(() => {    
-        window.addEventListener('resize', render)
+    useEffect(() => {
+
+      // const project = document.querySelector(`#project1`);
+      // const index = document.querySelector(`.index`);
+      // const scrollSpace = document.querySelector(`#scrollSpace`);
+
+      // const indexHeight = index.scrollHeight;
+      // const projectHeight = project.scrollHeight;
+
+      // scrollSpace.style.height = `calc(${indexHeight}px + ${projectHeight}px`;
+      // console.log("scrollSpace", indexHeight + projectHeight);
+      // document.body.style.setProperty('--scrollHeight', indexHeight + projectHeight);
+
+        // window.addEventListener('resize', render)
 
         // on page leave, remove event listener
-        return function cleanUp() {
-          window.removeEventListener('resize', render)
-        }
+        // return function cleanUp() {
+        //   window.removeEventListener('resize', render)
+        // }
 
     }, [])
 
   const projectComponents = projects.map(project =>
     project.id === 1 
     ?
-    <div key={project.id} >
+    <div key={project.id} className="first-project">
         <WorkProject 
           name = {project.name}
           id={project.id}
@@ -399,7 +415,7 @@ export default function Home(props) {
         />
     </div>
     :
-      <div key={project.id} >
+      <div key={project.id}>
         <Fade>
           <WorkProject 
             name = {project.name}
@@ -415,7 +431,7 @@ export default function Home(props) {
   return (
     <div>
       <Layout>
-        <ScrollSpace />
+        {/* <ScrollSpace /> */}
         <Index
           projectComponents = {projectComponents}
           portrait={props.data.portrait.childImageSharp.fluid}

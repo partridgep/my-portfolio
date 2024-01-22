@@ -191,7 +191,7 @@ html {
   html {
     font: 112.5%/1.45em georgia, serif;
     box-sizing: border-box;
-    overflow-y: scroll;
+    // overflow-y: scroll;
   }
   * {
     box-sizing: inherit;
@@ -409,7 +409,7 @@ html {
     line-height: 1.42;
     background: hsla(0, 0%, 0%, 0.04);
     border-radius: 3px;
-    overflow: auto;
+    // overflow: auto;
     word-wrap: normal;
     padding: 1.45rem;
   }
@@ -624,6 +624,70 @@ html {
       font-size: 100%;
     }
   }
+
+.first-project {
+  position: sticky;
+  top: 12vh;
+  margin-bottom: 20vh;
+
+  @keyframes scroll-away { 
+    to {
+      position: relative;
+      margin-top: 54vh;
+    }
+  }
+  animation: scroll-away 0.4s forwards paused;
+  animation-delay: calc(var(--scroll) * -1s);
+
+  #project1 {
+    @keyframes fade-in { 
+      0% {
+        opacity: 0;
+      }
+      40% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    animation: fade-in 0.1s forwards paused;
+    animation-delay: calc(var(--scroll) * -1s);
+  }
+
+  #project_1_text {
+    @keyframes reveal-to-left { 
+      0% {
+        transform: translateX(30%);
+      }
+      40% {
+        transform: translateX(30%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    animation: reveal-to-left 0.1s forwards paused;
+    animation-delay: calc(var(--scroll) * -1s);
+  }
+  #project_1_image {
+    @keyframes reveal-to-right { 
+      0% {
+        transform: translateX(-30%);
+      }
+      40% {
+        transform: translateX(-30%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    animation: reveal-to-right 0.1s forwards paused;
+    animation-delay: calc(var(--scroll) * -1s);
+  }
+}
+
+
 
 .project-functionalities {
   position: relative;

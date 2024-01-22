@@ -34,7 +34,7 @@ export default function Header({ title, size}) {
                 <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>About</button>
                 <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>Contact Me</button>
             </nav>
-        }
+            }
         </header>
     )
 }

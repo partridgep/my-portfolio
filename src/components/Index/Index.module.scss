@@ -1,6 +1,19 @@
 .Index {
-    position: fixed;
+    // position: sticky;
+    margin-top: 20vh;
     width: 100vw;
     left: 0;
     z-index: 0;
+
+    @keyframes show-index { 
+        to {
+            position: relative;
+            z-index: 1;
+            padding-top: 115px;
+            // top: calc(var(--scroll))px;
+        }
+    }
+
+    animation: show-index 0.20s forwards paused;
+    animation-delay: calc(var(--scroll) * -1s);
 }

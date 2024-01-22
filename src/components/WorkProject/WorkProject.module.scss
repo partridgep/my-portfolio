@@ -1,5 +1,5 @@
 .WorkProject {
-    position: relative;
+    // position: relative;
     min-height: calc(100vh - 115px);
     height: max-content;
     // top: 115px;
@@ -9,12 +9,12 @@
     flex-shrink: 0;
     flex-grow: 1;
     // display: none;
-    opacity: 0;
+    opacity: 100%;
     flex-direction: row;
     justify-content: space-around;
     // margin: 3% 0 3% 3%;
-    overflow-y: hidden;
-    -ms-overflow-style: none;  /* IE and Edge */
+    // overflow-y: hidden;
+    // -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     
     h1, h2 {
@@ -47,13 +47,13 @@
     button {
         margin: 3% 0 1vh 3vw;
         background: radial-gradient(rgb(94, 93, 93), rgb(48, 47, 47));
-        border-radius: 15px;
-        padding: 5px 8px;
+        border-radius: 8px;
+        padding: 5px 15px;
         transition: 0.2s all;
     }
 
     button:hover {
-        padding: 5px 10px;
+        padding: 5px 16px;
     }
 
     a {
