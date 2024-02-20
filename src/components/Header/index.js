@@ -4,37 +4,147 @@ import {Link} from "gatsby"
 import { navigate } from "@reach/router";
 
 import setFrameIndex from '../../utils/sectionLinks'
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 
 import styles from './Header.module.scss'
 
 export default function Header({ title, size}) {
+    
+    useGSAP(() => {
+
+        gsap.to("#header",
+            // {
+            //     height: "100%",
+            //     scrollTrigger: {
+            //         trigger: "#project1",
+            //         scrub: true,
+            //         start: "bottom 99.9%",
+            //         // markers: true
+            //     }
+            // },
+            {
+                height: "2%",
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 99.9%",
+                    // markers: true
+                }
+            },
+        );
+
+        gsap.to("#subtitle", {
+            opacity: 0,
+            display: "none",
+            scrollTrigger: {
+                trigger: "#project1",
+                scrub: true,
+                start: "bottom 99.9%",
+                end: "+=10%",
+                // markers: true
+            }
+        });
+        gsap.to(".mainNav", 
+            {
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 99.9%",
+                    end: "+=9%",
+                    // markers: true
+                }
+            },
+            // {
+            //     display: "none",
+            //     scrollTrigger: {
+            //         trigger: "#project1",
+            //         scrub: true,
+            //         start: "bottom 99.9%",
+            //         end: "+=301",
+            //     }
+            // },
+        );
+        gsap.to(".reappearNav", 
+            {
+                opacity: 1,
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 70%",
+                    end: "+=12%",
+                    // markers: true
+                },
+            },
+        );
+
+        let mm = gsap.matchMedia();
+
+        mm.add("(min-width: 800px)", () => {
+
+            gsap.fromTo("#title_container",
+                {
+                    marginLeft: `50%`,
+                    scrollTrigger: {
+                        trigger: "#project1",
+                        scrub: true,
+                        start: "bottom 99.9%",
+                        toggleActions: "restart pause reverse pause"
+                    },
+                },
+                {
+                    scale: 0.5,
+                    yPercent: -18.5,
+                    marginLeft: `21%`,
+                    scrollTrigger: {
+                        trigger: "#project1",
+                        scrub: true,
+                        start: "bottom 99.9%",
+                        toggleActions: "restart pause reverse pause"
+                    }
+                });
+
+            return () => { // optional
+                // custom cleanup code here (runs when it STOPS matching)
+            };
+        });
+        
+      
+      },); // <-- scope is for selector text (optional)
 
     return(
         <header id = "header" className={`${styles.Header} ${styles[size]}`}>
             {size === "big" ?
-                <div id="title_container" onClick={() => setFrameIndex(0)}><h1 id = "title">{title}</h1></div>
+                <div id="title_container"><h1 id = "title">{title}</h1></div>
                 :
-                <Link to="/" id="title_container" onClick={() => setFrameIndex(0)}><h1 id = "title">{title}</h1></Link>
+                <Link to="/" id="title_container"><h1 id = "title">{title}</h1></Link>
             }
-                <h2 id="subtitle" >
-                    Full-Stack Software Engineer chasing the <span>endorphin</span> rush that comes from merging the <span>creative</span> and the <span>logical</span> to effectively problem-solve
-                </h2>
+            <h2 id="subtitle" >
+                Full-Stack Software Engineer chasing the <span>endorphin</span> rush that comes from merging the <span>creative</span> and the <span>logical</span> to effectively problem-solve
+            </h2>
             {size === "big" ?
-            <nav>
-                <button onClick={() => setFrameIndex("project1")}>My Work</button>
-                <button onClick={() => setFrameIndex("about")}>About</button>
-                <button onClick={() => setFrameIndex("contact")}>Contact Me</button>
-            </nav>
-            :
-            <nav>
-                {/* <Link to="/" state={{ section: "project1" }} ><button>My Work</button></Link> */}
-                {/* <Link to="/" state={{ section: "about" }} ><button>About</button></Link> */}
-                {/* <Link to="/" state={{ section: "contact" }} ><button>Contact Me</button></Link> */}
-                <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "project1"}}>My Work</button>
-                <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>About</button>
-                <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>Contact Me</button>
-            </nav>
+                <nav className={`${styles.mainNav} mainNav`} >
+                    <button onClick={() => setFrameIndex("project1")}>My Work</button>
+                    <button onClick={() => setFrameIndex("about")}>About</button>
+                    <button onClick={() => setFrameIndex("contact")}>Contact Me</button>
+                </nav>
+                :
+                <nav className={`${styles.mainNav} mainNav`} >
+                    {/* <Link to="/" state={{ section: "project1" }} ><button>My Work</button></Link> */}
+                    {/* <Link to="/" state={{ section: "about" }} ><button>About</button></Link> */}
+                    {/* <Link to="/" state={{ section: "contact" }} ><button>Contact Me</button></Link> */}
+                    <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "project1"}}>My Work</button>
+                    <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>About</button>
+                    <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "about"}}>Contact Me</button>
+                </nav>
             }
+            <nav className={`${styles.reappearNav} reappearNav`}>
+                <button >My Work</button>
+                <button >About</button>
+                <button >Contact Me</button>
+            </nav>
         </header>
     )
 }

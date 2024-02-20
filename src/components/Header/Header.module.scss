@@ -6,12 +6,6 @@
     @return $val;
   }
 
-@keyframes shrink-header { 
-    to {
-        height: 1vh;
-    }
-}
-
 .Header {
     display: flex;
     flex-direction: column;
@@ -25,16 +19,16 @@
     min-height: 115px;
     z-index: 50;
 
-    @supports(animation-timeline: scroll()) {
-        animation: shrink-header forwards;
-        animation-timeline: scroll(block root);
-	    animation-range: 0 5%;
-    }
-    @supports not (animation-timeline: scroll()) {
-        animation: shrink-header 0.05s forwards;
-        animation-play-state: paused;
-        animation-delay: calc(var(--scroll) * -1s);
-    }
+    // @supports(animation-timeline: scroll()) {
+    //     animation: shrink-header forwards;
+    //     animation-timeline: scroll(block root);
+	//     animation-range: 0 5%;
+    // }
+    // @supports not (animation-timeline: scroll()) {
+    //     animation: shrink-header 0.05s forwards;
+    //     animation-play-state: paused;
+    //     animation-delay: calc(var(--scroll) * -1s);
+    // }
 
 
     div {
@@ -42,22 +36,7 @@
         margin: 0 auto 0 50%;
         transform: translateX(-50%);
         cursor: pointer;
-
-    
-        @keyframes shrink-title-container { 
-            to {
-                width: 350px;
-                transform: translateX(20%);
-                margin-left: 0;
-            }
-        }
-
-        animation: shrink-title-container 0.075s forwards;
-        animation-play-state: paused;
-        animation-delay: calc(var(--scroll) * -1s);
-
     }
-
 
     h1 {
         overflow: hidden;
@@ -74,16 +53,6 @@
         height: 200px;
         width: 600px;
 
-        @keyframes shrink-title { 
-            to {
-                font-size: 40px;
-                height: 115px;
-                line-height: 30px;
-                padding: 20px;
-                width: 350px;
-            }
-        }
-
         @keyframes elongate {
             from {
                 text-shadow: 0 0 0;
@@ -92,9 +61,7 @@
             }
         }
 
-        animation: shrink-title 0.04s forwards paused, elongate 2s;
-        animation-delay: calc(var(--scroll) * -1s);
-
+        animation: elongate 2s;
 
     }
 
@@ -106,16 +73,6 @@
         color: #d64f26;
         position: relative;
         z-index: -5;
-
-        @keyframes shrink-subtitle { 
-            to {
-                opacity: 0;
-                display: none;
-            }
-        }
-
-        animation: shrink-subtitle 0.0075s forwards paused;
-        animation-delay: calc(var(--scroll) * -1s);
         
         span {
             text-transform: uppercase;
@@ -135,69 +92,18 @@
 
     nav {
         align-items: flex-start;
-        margin: 20px 0 10vh 0;
         justify-content: space-evenly;
 
-        @keyframes shrink-nav { 
-            10% {
-                opacity: 0;
-            }
-            23% {
-                margin: 0;
-                position: absolute;
-            }
-            25% {
-                opacity: 0;
-            }
-            70% {
-                margin: 0;
-                position: absolute;
-                top: 25%;
-                right: 50px;
-                opacity: 100%;
-            }
-            100% {
-                margin: 0;
-                position: absolute;
-                top: 25%;
-                right: 50px;
-                opacity: 100%;
-            }
-        }
-
-        animation: shrink-nav 0.1s forwards paused calc(var(--scroll) * -1s);
 
         button {
             font-family: Alata; 
-            margin: 0 50px;
             color: #00627a;
-            font-size: 35px;
             outline: none;
             border: none;
             background: none;
             cursor: pointer;
             text-transform: uppercase;
             position: relative;
-
-            @keyframes shrink-button {
-                9% {
-                    font-size: 35px;
-                    margin: 0 50px;
-                    padding: 0;
-                }
-                30% {
-                    font-size: 20px;
-                    margin: 0;
-                    padding: 15px;
-                }
-                100% {
-                    font-size: 20px;
-                    margin: 0;
-                    padding: 15px;
-                }
-            }
-
-            animation: shrink-button 0.1s forwards paused calc(var(--scroll) * -1s);
         }
 
         button::before {
@@ -218,24 +124,31 @@
             transform: scaleX(1);
         }
     }
-}
 
-.highlightedButton {
-    text-decoration: underline;
-}
+    .mainNav {
+        opacity: 1;
+        margin: 20px 0 10vh 0;
 
-.highlightedButton:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    bottom: -15px;
-    left: 0;
-    background-color: #00627a;
-    visibility: visible;
-    transform: scaleX(1);
-    transition: all 0.2s ease-in-out 0s;
-    z-index: 500;
+        button {
+            font-size: 35px;
+            margin: 0 50px;
+        }
+    }
+    
+    .reappearNav{
+        opacity: 0;
+        position: absolute;
+        top: 25%;
+        right: 50px;
+        height: max-content;
+        flex-direction: row;
+
+        button {
+            font-size: 20px;
+            padding: 15px;
+        }
+    }
+    
 }
 
 // .big {
