@@ -19,22 +19,9 @@
     min-height: 115px;
     z-index: 50;
 
-    // @supports(animation-timeline: scroll()) {
-    //     animation: shrink-header forwards;
-    //     animation-timeline: scroll(block root);
-	//     animation-range: 0 5%;
-    // }
-    // @supports not (animation-timeline: scroll()) {
-    //     animation: shrink-header 0.05s forwards;
-    //     animation-play-state: paused;
-    //     animation-delay: calc(var(--scroll) * -1s);
-    // }
-
 
     div {
         max-width: 600px;
-        margin: 0 auto 0 50%;
-        transform: translateX(-50%);
         cursor: pointer;
     }
 
@@ -52,16 +39,6 @@
         position: relative;
         height: 200px;
         width: 600px;
-
-        @keyframes elongate {
-            from {
-                text-shadow: 0 0 0;
-            } to {
-                text-shadow: makelongshadow(#FF6138);
-            }
-        }
-
-        animation: elongate 2s;
 
     }
 
@@ -151,36 +128,41 @@
     
 }
 
-// .big {
+.big {
 
-//     h1 {
-//         animation: elongate 2s; 
-//     }
-// }
+    div {
+        margin: 0 auto 0 50%;
+        transform: translateX(-50%);
+    }
+
+    h1 {
+        animation: elongate 2s; 
+    }
+    @keyframes elongate {
+        from {
+            text-shadow: 0 0 0;
+        } to {
+            text-shadow: makelongshadow(#FF6138);
+        }
+    }
+}
 
 .small {
     height: 115px;
 
-    // div {
-    //     width: 350px;
-    //     margin-left: calc(50% - 28.57%);
-    // }
-
-    a {
-        width: 350px;
-        margin: 0 auto 0 calc(50% - 28.57%);
-        transform: translateX(-50%);
+    .linkHome {
+        margin: 0 auto 0 21%;
+        transform: translate(-50%, -18.5%) scale(0.5, 0.5);
         text-decoration: none;
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 80px;
         height: 115px;
-        line-height: 30px;
-        padding: 20px;
-        width: 350px;
-        margin-left: 0;
-        margin-bottom: 0;
+        line-height: 60px;
+        padding: 40px;
+        width: 600px;
+        height: 200px;
     }
 
     h2 {
@@ -194,6 +176,11 @@
         top: 25%;
         right: 50px;
         height: max-content;
+
+        button {
+            font-size: 20px;
+            padding: 15px;
+        }
 
         button {
             font-size: 20px;

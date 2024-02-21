@@ -11,7 +11,9 @@ export default function Index({projectComponents, portrait}) {
 
     return(
         <div className={`${styles.Index} index`}>
-            {projectComponents}
+            <div>
+              {projectComponents}
+            </div>
             <Fade>
               <About 
                   portrait={portrait}

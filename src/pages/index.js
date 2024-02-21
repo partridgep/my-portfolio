@@ -1,15 +1,16 @@
 import React, { useEffect } from "react"
 import { graphql } from 'gatsby';
 
-// import setFrameIndex from '../utils/sectionLinks'
 
 import Fade from 'react-reveal/Fade';
+import setFrameIndex from '../utils/sectionLinks'
 
 import { gsap } from "gsap";
+// import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// import ScrollSpace from '../components/ScrollSpace'
 import Layout from '../components/Layout'
+import FirstProject from '../components/FirstProject'
 import WorkProject from '../components/WorkProject'
 import Index from '../components/Index'
 
@@ -301,7 +302,7 @@ export default function Home(props) {
     // function getFrameIndex() {
     //     // current scroll index
     //     const scrollTop = window.scrollY;
-    //     // console.log(`scrollTop: ${scrollTop}`);
+        // console.log(`scrollTop: ${scrollTop}`);
     //     // console.log(`scrollHeight: ${document.documentElement.scrollHeight}`);
     //     // total amount of scroll available
     //     const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
@@ -341,12 +342,10 @@ export default function Home(props) {
 
     function checkSection() {
       if (props.location.state && props.location.state.section) {
-        console.log("there is location state");
-        // setFrameIndex(props.location.state.section);
-        // console.log(window.history.state)
+        console.log("there is location state", props.location.state.section);
+        setFrameIndex(props.location.state.section);
         document.querySelector("#title").style.animation = "none";
-        // window.history.state.section = null;
-        // window.history.state.key = null;
+        window.history.replaceState(null, '')
       }
     }
 
@@ -368,7 +367,8 @@ export default function Home(props) {
         // setScrollSpaceheight();
 
         // window.addEventListener('scroll', () => {
-        //   document.body.style.setProperty('--scroll', window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
+        //   console.log(`scrollTop: ${window.pageYOffset / (document.body.offsetHeight - window.innerHeight)}`);
+        //   // document.body.style.setProperty('--scroll', window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
         // }, false);
         
         // set up event scrolling listener for animations
@@ -407,36 +407,78 @@ export default function Home(props) {
 
     // }, [])
 
+    // useGSAP(() => {
+
+    //   let tl = gsap.timeline({
+    //     // yes, we can add it to an entire timeline!
+    //     scrollTrigger: {
+    //       trigger: "#___gatsby",
+    //       // pin: true, // pin the trigger element while active
+    //       start: "top top", // when the top of the trigger hits the top of the viewport
+    //       // end: "+=500", // end after scrolling 500px beyond the start
+    //       // scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+    //       snap: {
+    //         snapTo: "labels", // snap to the closest label in the timeline
+    //         duration: { min: 1, max: 2 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+    //         // delay: 0.1, // wait 0.2 seconds from the last scroll event before doing the snapping
+    //         ease: "power1.inOut", // the ease of the snap animation ("power3" by default)
+    //       },
+    //       // markers: true
+    //     },
+    //   });
+
+    //   // add animations and labels to the timeline
+    //   tl.addLabel("start")
+    //     // .to("#firstProjectWrapper", {scrollTrigger: {trigger: "#firstProjectWrapper", start: "bottom 100%", markers: true}})
+    //     .to("#firstProjectWrapper", {})
+    //     .addLabel("firstProject", 0.45)
+    //     .to("#project2", {})
+    //     .addLabel("project2", 0.85)
+    //     .to("#project3", {})
+    //     .addLabel("project3", 1.2)
+    //     .to("#project4", {})
+    //     .addLabel("project4", 1.8)
+    //     .to("#about", {})
+    //     .addLabel("about", 2.8)
+    //     .to("#contact", {})
+    //     .addLabel("contact", 3)
+    //     // 
+    //     // .from(".box", { backgroundColor: "#28a92b" })
+    //     // .addLabel("spin")
+    //     // .to("#project2", {})
+    //     // .addLabel("project2", 0.2)
+    //     // .to("#project3", {})
+    //     // .addLabel("project3")
+    //     // .to("#project4", {})
+    //     // .addLabel("project4")
+
+    //   console.log(tl.duration())
+
+    //   console.log(tl.labels);
+      
+    // },);
+
   const projectComponents = projects.map(project =>
-    project.id === 1 
-    ?
-    <div key={project.id}>
-        <WorkProject 
+    project.id > 1 &&
+      <Fade key={project.id}>
+        <WorkProject
           name = {project.name}
           id={project.id}
           description={project.description}
           mainScreenshot={props.data[`project${project.id}_image1`].childImageSharp.fluid}
           secondaryScreenshot={props.data[`project${project.id}_image2`].childImageSharp.fluid}
         />
-    </div>
-    :
-      <div key={project.id}>
-        <Fade>
-          <WorkProject 
-            name = {project.name}
-            id={project.id}
-            description={project.description}
-            mainScreenshot={props.data[`project${project.id}_image1`].childImageSharp.fluid}
-            secondaryScreenshot={props.data[`project${project.id}_image2`].childImageSharp.fluid}
-          />
-        </Fade>
-      </div>
+      </Fade>
     )
 
   return (
     <div>
       <Layout>
-        {/* <ScrollSpace /> */}
+        <FirstProject
+          project={projects[0]}
+          mainScreenshot={props.data.project1_image1.childImageSharp.fluid}
+          secondaryScreenshot={props.data.project1_image2.childImageSharp.fluid}
+        />
         <Index
           projectComponents = {projectComponents}
           portrait={props.data.portrait.childImageSharp.fluid}
