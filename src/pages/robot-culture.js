@@ -13,7 +13,7 @@ export default function RobotCulture(props) {
         name: "Robot Culture",
         githubLink: "https://github.com/partridgep/robot-culture",
         liveLink: "https://robot-culture.herokuapp.com/",
-        blurb: <p><span>Why Robots? </span>I wanted to create the kind of fun, nerdy resource I would love to discover and spend hours exploring. This project was a fantastic opportunity to delve into all of React's functionalities, and create a robust Single-Page App. Robots, with their many properties, made for the ideal practice for accessing, modifying, and adding models in a database.</p>,
+        blurb: <p><span>Why Robots? </span>I wanted to create the kind of fun, nerdy resource I would love to discover and spend hours exploring. This project was a fantastic opportunity to delve into all of React's functionalities, and create a robust Single-Page App. Robots, with their many properties, made for a fun way to go about accessing, modifying, and adding models in a database.</p>,
         landingPage: props.data.RobotCulture_Presentation_LandingPage.childImageSharp.fluid,
         selectionPage: props.data.RobotCulture_Presentation_SelectionPage.childImageSharp.fluid,
         detailPage: props.data.RobotCulture_Presentation_DetailPage.childImageSharp.fluid,
