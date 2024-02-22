@@ -39,6 +39,7 @@ export default function Header({ title, size}) {
         });
         gsap.to(".mainNav", 
             {
+                display: "none",
                 opacity: 0,
                 scrollTrigger: {
                     trigger: "#project1",
@@ -49,26 +50,14 @@ export default function Header({ title, size}) {
                 }
             },
         );
-        gsap.to(".reappearNav", 
-            {
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: "#project1",
-                    scrub: true,
-                    start: "bottom 70%",
-                    end: "+=12%",
-                    // markers: true
-                },
-            },
-        );
 
         let mm = gsap.matchMedia();
 
-        mm.add("(min-width: 800px)", () => {
+        mm.add("(max-width: 799px)", () => {
 
             gsap.fromTo("#title_container_big",
                 {
-                    marginLeft: `50%`,
+                    xPercent: -50,
                     scrollTrigger: {
                         trigger: "#project1",
                         scrub: true,
@@ -78,8 +67,83 @@ export default function Header({ title, size}) {
                 },
                 {
                     scale: 0.5,
+                    yPercent: -22,
+                    xPercent: -80,
+                    scrollTrigger: {
+                        trigger: "#project1",
+                        scrub: true,
+                        start: "bottom 97%",
+                        toggleActions: "restart pause reverse pause"
+                    }
+                }
+            );
+            gsap.to(".reappearNav", {
+                opacity: 1,
+                display: "block",
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 30%",
+                    end: "+=12%",
+                },
+            });
+        });
+        mm.add("(min-width: 800px)", () => {
+            gsap.to(".reappearNav", {
+                opacity: 1,
+                display: "block",
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 70%",
+                    end: "+=12%",
+                    // markers: true
+                },
+            });
+        });
+        mm.add("(min-width: 800px) and (max-width: 1199px)", () => {
+
+            gsap.fromTo("#title_container_big",
+                {
+                    xPercent: -50,
+                    scrollTrigger: {
+                        trigger: "#project1",
+                        scrub: true,
+                        start: "bottom 97%",
+                        toggleActions: "restart pause reverse pause"
+                    }
+                },
+                {
+                    scale: 0.5,
                     yPercent: -18.5,
-                    marginLeft: `21%`,
+                    xPercent: 0,
+                    x: "-60vw",
+                    scrollTrigger: {
+                        trigger: "#project1",
+                        scrub: true,
+                        start: "bottom 97%",
+                        toggleActions: "restart pause reverse pause"
+                    }
+                }
+            );
+        });
+        mm.add("(min-width: 1200px) and (max-width: 2499px)", () => {
+
+            gsap.fromTo("#title_container_big",
+                {
+                    xPercent: -50,
+                    scrollTrigger: {
+                        trigger: "#project1",
+                        scrub: true,
+                        start: "bottom 97%",
+                        toggleActions: "restart pause reverse pause"
+                    }
+                },
+                {
+                    scale: 0.5,
+                    yPercent: -18.5,
+                    xPercent: 0,
+                    x: "-55vw",
                     scrollTrigger: {
                         trigger: "#project1",
                         scrub: true,
@@ -87,10 +151,31 @@ export default function Header({ title, size}) {
                         toggleActions: "restart pause reverse pause"
                     }
                 });
+        });
+        mm.add("(min-width: 2500px)", () => {
 
-            return () => { // optional
-                // custom cleanup code here (runs when it STOPS matching)
-            };
+            gsap.fromTo("#title_container_big",
+                {
+                    xPercent: -50,
+                    scrollTrigger: {
+                        trigger: "#project1",
+                        scrub: true,
+                        start: "bottom 97%",
+                        toggleActions: "restart pause reverse pause"
+                    }
+                },
+                {
+                    scale: 0.5,
+                    yPercent: -18.5,
+                    xPercent: 0,
+                    x: "-45vw",
+                    scrollTrigger: {
+                        trigger: "#project1",
+                        scrub: true,
+                        start: "bottom 97%",
+                        toggleActions: "restart pause reverse pause"
+                    }
+                });
         });
         
       
@@ -117,9 +202,6 @@ export default function Header({ title, size}) {
                     <Link to="/" state={{ section: "#firstProjectWrapper" }} ><button>My Work</button></Link>
                     <Link to="/" state={{ section: "#about" }} ><button>About</button></Link>
                     <Link to="/" state={{ section: "#contact" }} ><button>Contact Me</button></Link>
-                    {/* <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "#firstProjectWrapper"}}>My Work</button>
-                    <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "#about"}}>About</button>
-                    <button onClick={() => {navigate("/", {state: {section: null}}); window.history.state.section = "#contact"}}>Contact Me</button> */}
                 </nav>
             }
             {size === "big" &&

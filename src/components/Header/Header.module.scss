@@ -113,6 +113,7 @@
     }
     
     .reappearNav{
+        display: none;
         opacity: 0;
         position: absolute;
         top: 25%;
@@ -189,9 +190,9 @@
             padding: 15px;
         }
         
-        button:nth-child(1) {
-            color: #023e4d;
-        }
+        // button:nth-child(1) {
+        //     color: #023e4d;
+        // }
     }
 }
 
@@ -214,11 +215,12 @@
                 letter-spacing: 5px;
             }
         }
-        nav {
+        .mainNav {
             display: block;
             flex-direction: column;
             align-items: center;
             margin-bottom: 23vh;
+
             button {
                 font-size: 20px;
                 margin: 5% 0;
@@ -229,24 +231,49 @@
             button::before {
                 width: 0;
             }
+            button:hover {
+                color: #001c23;
+            }
+            button:focus {
+                color: #001c23;
+            }
+            button:active {
+                color: #001c23;
+            }
+        }
+        .reappearNav {
+            top: 0;
+            right: 2%;
+            height: 100%;
+            flex-direction: row;
+            align-items: center;
+
+            button {
+                height: 100%;
+                font-size: 13px;
+                margin: 0;
+                width: max-content;
+                padding: 3px;
+            }
+            button::before {
+                width: 0;
+            }
+            button:hover {
+                color: #001c23;
+            }
+            button:active {
+                color: #001c23;
+            }
+
         }
     }
 
     .small {
         height: 70px;
 
-        a {
-            width: 160px;
-            margin-left: 18.75%;
-
-        }
-
-        h1 {
-            font-size: 20px;
-            height: 70px;
-            line-height: 20px;
-            padding: 20px;
-            width: 160px;
+        .linkHome {
+            margin: 0 auto 0 50%;
+            transform: translate(-80%, -22%) scale(0.5, 0.5);
         }
 
         nav {
@@ -257,13 +284,31 @@
             right: 2%;
             height: 100%;
             flex-direction: row;
+            align-items: center;
+
+            button {
+                // color: #00627a;
+                height: 100%;
+                font-size: 13px;
+                margin: 0;
+                width: max-content;
+                padding: 3px;
+            }
 
             button {
                 font-size: 13px;
                 margin: 0;
                 width: max-content;
                 padding: 3px;
-                
+            }
+            button::before {
+                width: 0;
+            }
+            button:hover {
+                color: #001c23;
+            }
+            button:active {
+                color: #001c23;
             }
         }
 
