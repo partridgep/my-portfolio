@@ -1,9 +1,9 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useCallback } from "react"
 import { graphql } from 'gatsby';
 
 
 import Fade from 'react-reveal/Fade';
-import setFrameIndex from '../utils/sectionLinks'
+import setSection from '../utils/sectionLinks'
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,25 +20,24 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home(props) {
 
   // check if coming from previous page, telling us to go to a section
-  function checkSection() {
+  const checkSection = useCallback(() => {
     if (props.location.state && props.location.state.section) {
       // console.log("there is location state", props.location.state.section);
-      setFrameIndex(props.location.state.section, "instant");
+      setSection(props.location.state.section, "instant");
       document.querySelector("#title").style.animation = "none";
       window.history.replaceState(null, "");
     }
-  }
+  }, [props.location.state]);
 
   useEffect(() => {
-
     // refresh scroll triggers so they don't get messed up when navigating from one of the project pages
     ScrollTrigger.refresh()
     // make sure we always begin at start of page on refresh    
     window.scrollTo(0, 0);
-
+    // get to correct page section when navigating from one of the project pages
     checkSection()
 
-  }, [])
+  }, [checkSection])
 
   const projectComponents = projects.map(project =>
     project.id > 1 &&

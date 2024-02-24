@@ -20,10 +20,17 @@
     z-index: 50;
 
 
-    div {
+    .title_container_big {
         max-width: 600px;
         cursor: pointer;
         z-index: 1;
+        outline: none;
+        border: none;
+        background: none;
+        text-align: left;
+    }
+    .title_container_big:focus h1 {
+        text-shadow: makelongshadow(#ca2f09);
     }
 
     h1 {
@@ -98,6 +105,11 @@
         }
 
         button:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+
+        button:focus::before {
             visibility: visible;
             transform: scaleX(1);
         }

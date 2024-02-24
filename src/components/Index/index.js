@@ -17,7 +17,7 @@ export default function Index({projectComponents, portrait}) {
             <Fade>
               <About 
                   portrait={portrait}
-                  setFrameIndex
+                  setSection
               />
             </Fade>
             <Fade>

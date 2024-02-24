@@ -1,7 +1,7 @@
 import React from "react"
 import {Link} from "gatsby"
 
-import setFrameIndex from '../../utils/sectionLinks'
+import setSection from '../../utils/sectionLinks'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -145,7 +145,7 @@ export default function Header({ title, size}) {
     return(
         <header id = "header" className={`${styles.Header} ${styles[size]}`}>
             {size === "big" ?
-                <div id="title_container_big" onClick={() => setFrameIndex()}><h1 id = "title">{title}</h1></div>
+                <button className={styles.title_container_big}  id="title_container_big" onClick={() => setSection()}><h1 id = "title">{title}</h1></button>
                 :
                 <Link to="/" id="title_container" className={`${styles.linkHome}`}><h1 id = "title">{title}</h1></Link>
             }
@@ -154,9 +154,9 @@ export default function Header({ title, size}) {
             </h2>
             {size === "big" ?
                 <nav className={`${styles.mainNav} mainNav`} >
-                    <button onClick={() => setFrameIndex("#firstProjectWrapper")}>My Work</button>
-                    <button onClick={() => setFrameIndex("#about")}>About</button>
-                    <button onClick={() => setFrameIndex("#contact")}>Contact Me</button>
+                    <button onClick={() => setSection("#firstProjectWrapper")}>My Work</button>
+                    <button onClick={() => setSection("#about")}>About</button>
+                    <button onClick={() => setSection("#contact")}>Contact Me</button>
                 </nav>
                 :
                 <nav>
@@ -167,9 +167,9 @@ export default function Header({ title, size}) {
             }
             {size === "big" &&
                 <nav className={`${styles.reappearNav} reappearNav`}>
-                    <button onClick={() => setFrameIndex("#firstProjectWrapper")}>My Work</button>
-                    <button onClick={() => setFrameIndex("#about")}>About</button>
-                    <button onClick={() => setFrameIndex("#contact")}>Contact Me</button>
+                    <button onClick={() => setSection("#firstProjectWrapper")}>My Work</button>
+                    <button onClick={() => setSection("#about")}>About</button>
+                    <button onClick={() => setSection("#contact")}>Contact Me</button>
                 </nav>
             }
         </header>

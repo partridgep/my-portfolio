@@ -1,4 +1,4 @@
-async function setFrameIndex(section, behavior) {
+async function setSection(section, behavior) {
     // console.log("go to ", section)
     let jumpBehavior = "smooth";
     // console.log(jumpBehavior)
@@ -13,4 +13,4 @@ async function setFrameIndex(section, behavior) {
     }
 }
 
-export default setFrameIndex;
+export default setSection;

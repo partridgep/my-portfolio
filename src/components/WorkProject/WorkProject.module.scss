@@ -44,18 +44,6 @@
         }
     }
 
-    button {
-        margin: 3% 0 1vh 3vw;
-        background: radial-gradient(rgb(94, 93, 93), rgb(48, 47, 47));
-        border-radius: 8px;
-        padding: 5px 15px;
-        transition: 0.2s all;
-    }
-
-    button:hover {
-        padding: 5px 16px;
-    }
-
     a {
         font-family: Alata;
         font-size: 20px;
@@ -63,7 +51,22 @@
         letter-spacing: 2px;
         text-decoration: none;
         align-self: center;
+        border: 2px solid rgb(172, 172, 172);
+        margin: 3% 0 1vh 3vw;
+        background: radial-gradient(rgb(94, 93, 93), rgb(66, 66, 66));
+        border-radius: 8px;
+        padding: 5px 15px 7px 15px;
+        transition: 0.2s all;
+    }
+    a:visited {
         color: white;
+    }
+    a:hover {
+        padding: 5px 16px 7px 16px;
+    }
+    a:focus {
+        padding: 5px 16px 7px 16px;
+        background: radial-gradient(rgb(74, 73, 73), rgb(37, 37, 37));
     }
 }
 
@@ -116,7 +119,6 @@
 
     .WorkProject {
         min-height: calc(100vh - 70px);
-        // top: 70px;
         left: 0;
         flex-direction: column-reverse;
         justify-content: space-evenly;
@@ -147,6 +149,7 @@
             font-size: 15px;
             font-weight: 900;
             letter-spacing: 2px;
+            margin: 3vh;
         }
 
     }
