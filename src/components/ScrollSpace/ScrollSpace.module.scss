@@ -1,4 +1,13 @@
 .ScrollSpace {
     height: 200vh;
     background-color: #f1e8b9;
+
+    @keyframes hide-scrollspace { 
+        to {
+            display: none;
+        }
+    }
+
+    animation: hide-scrollspace 0.20s forwards paused;
+    animation-delay: calc(var(--scroll) * -1s);
 }

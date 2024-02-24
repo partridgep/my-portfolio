@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     background-color: #f1e8b9;
+    // overflow-y: scroll;
+    // scroll-snap-type: y mandatory;
     
     main {
         flex-grow: 1;

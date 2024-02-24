@@ -19,15 +19,22 @@
     min-height: 115px;
     z-index: 50;
 
-    div {
+
+    .title_container_big {
         max-width: 600px;
-        margin: 0 auto 0 50%;
-        transform: translateX(-50%);
         cursor: pointer;
+        z-index: 1;
+        outline: none;
+        border: none;
+        background: none;
+        text-align: left;
+    }
+    .title_container_big:focus h1 {
+        text-shadow: makelongshadow(#ca2f09);
     }
 
     h1 {
-        overflow:hidden;
+        overflow: hidden;
         font-weight: 600; 
         color: #FFFFD9;  
         font-family: 'Helvetica'; 
@@ -40,6 +47,7 @@
         position: relative;
         height: 200px;
         width: 600px;
+
     }
 
     h2 {
@@ -67,24 +75,14 @@
         }
     }
 
-    @keyframes elongate {
-        from {
-            text-shadow: 0 0 0;
-        } to {
-            text-shadow: makelongshadow(#FF6138);
-        }
-    }
-
     nav {
         align-items: flex-start;
-        margin: 20px 0 10vh 0;
         justify-content: space-evenly;
+
 
         button {
             font-family: Alata; 
-            margin: 0 50px;
             color: #00627a;
-            font-size: 35px;
             outline: none;
             border: none;
             background: none;
@@ -110,25 +108,38 @@
             visibility: visible;
             transform: scaleX(1);
         }
+
+        button:focus::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
     }
-}
 
-.highlightedButton {
-    text-decoration: underline;
-}
+    .mainNav {
+        opacity: 1;
+        margin: 20px 0 10vh 0;
 
-.highlightedButton:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    bottom: -15px;
-    left: 0;
-    background-color: #00627a;
-    visibility: visible;
-    transform: scaleX(1);
-    transition: all 0.2s ease-in-out 0s;
-    z-index: 500;
+        button {
+            font-size: 35px;
+            margin: 0 50px;
+        }
+    }
+    
+    .reappearNav{
+        display: none;
+        opacity: 0;
+        position: absolute;
+        top: 25%;
+        right: 50px;
+        height: max-content;
+        flex-direction: row;
+
+        button {
+            font-size: 20px;
+            padding: 15px;
+        }
+    }
+    
 }
 
 .big {
@@ -136,31 +147,29 @@
     h1 {
         animation: elongate 2s; 
     }
+    @keyframes elongate {
+        from {
+            text-shadow: 0 0 0;
+        } to {
+            text-shadow: makelongshadow(#FF6138);
+        }
+    }
 }
 
 .small {
     height: 115px;
 
-    // div {
-    //     width: 350px;
-    //     margin-left: calc(50% - 28.57%);
-    // }
-
-    a {
-        width: 350px;
-        margin: 0 auto 0 calc(50% - 28.57%);
-        transform: translateX(-50%);
+    .linkHome {
         text-decoration: none;
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 80px;
         height: 115px;
-        line-height: 30px;
-        padding: 20px;
-        width: 350px;
-        margin-left: 0;
-        margin-bottom: 0;
+        line-height: 60px;
+        padding: 40px;
+        width: 600px;
+        height: 200px;
     }
 
     h2 {
@@ -177,14 +186,19 @@
 
         button {
             font-size: 20px;
+            padding: 15px;
+        }
+
+        button {
+            font-size: 20px;
             margin: 0;
             height: max-content;
             padding: 15px;
         }
         
-        button:nth-child(1) {
-            color: #023e4d;
-        }
+        // button:nth-child(1) {
+        //     color: #023e4d;
+        // }
     }
 }
 
@@ -207,11 +221,12 @@
                 letter-spacing: 5px;
             }
         }
-        nav {
+        .mainNav {
             display: block;
             flex-direction: column;
             align-items: center;
             margin-bottom: 23vh;
+
             button {
                 font-size: 20px;
                 margin: 5% 0;
@@ -222,24 +237,48 @@
             button::before {
                 width: 0;
             }
+            button:hover {
+                color: #001c23;
+            }
+            button:focus {
+                color: #001c23;
+            }
+            button:active {
+                color: #001c23;
+            }
+        }
+        .reappearNav {
+            top: 0;
+            right: 2%;
+            height: 100%;
+            flex-direction: row;
+            align-items: center;
+
+            button {
+                height: 100%;
+                font-size: 13px;
+                margin: 0;
+                width: max-content;
+                padding: 3px;
+            }
+            button::before {
+                width: 0;
+            }
+            button:hover {
+                color: #001c23;
+            }
+            button:active {
+                color: #001c23;
+            }
+
         }
     }
 
     .small {
         height: 70px;
 
-        a {
-            width: 160px;
-            margin-left: 18.75%;
-
-        }
-
-        h1 {
-            font-size: 20px;
-            height: 70px;
-            line-height: 20px;
-            padding: 20px;
-            width: 160px;
+        .linkHome {
+            transform: translate(-30vw, -22%) scale(0.5, 0.5);
         }
 
         nav {
@@ -250,15 +289,49 @@
             right: 2%;
             height: 100%;
             flex-direction: row;
+            align-items: center;
+
+            button {
+                // color: #00627a;
+                height: 100%;
+                font-size: 13px;
+                margin: 0;
+                width: max-content;
+                padding: 3px;
+            }
 
             button {
                 font-size: 13px;
                 margin: 0;
                 width: max-content;
                 padding: 3px;
-                
+            }
+            button::before {
+                width: 0;
+            }
+            button:hover {
+                color: #001c23;
+            }
+            button:active {
+                color: #001c23;
             }
         }
 
+    }
+}
+
+@media(min-width: 832px) and (max-width: 1199px) {
+    .linkHome {
+        transform: translate(-33vw, -18.5%) scale(0.5, 0.5);
+    }
+}
+@media(min-width: 1200px) and (max-width: 2499px) {
+    .linkHome {
+        transform: translate(-36vw, -18.5%) scale(0.5, 0.5);
+    }
+}
+@media(min-width: 2500px) {
+    .linkHome {
+        transform: translate(-38vw, -18.5%) scale(0.5, 0.5);
     }
 }

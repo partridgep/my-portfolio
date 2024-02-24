@@ -1,6 +1,6 @@
 import React from 'react'
 import Img from 'gatsby-image';
-import { Link } from 'gatsby'
+import { Link } from 'gatsby';
 
 import styles from './WorkProject.module.scss'
 
@@ -15,7 +15,7 @@ export default function WorkProject( {name, id, description, mainScreenshot, sec
             <div id={`project_${id}_text`}>
                 <h1>{name}</h1>
                 {description}
-                <button><Link to={link}>Learn More</Link></button>
+                <Link to={link}>Learn More</Link>
             </div>
                 <div id={`project_${id}_image`} className={styles.ProjectImages}>
                     <Img 
