@@ -6,11 +6,11 @@ import ProjectPresentation from '../components/ProjectPresentation'
 
 import { graphql } from 'gatsby';
 
-export default function Prism(props) {
+export default function Priosm(props) {
 
     const prism = {
-        name: "PRISM Platform",
-        blurb: <p className="blurb"><span>What is PRISM? </span>It is the omnichannel platform for <a href="https://www.aholddelhaize.com/en/home/" target="_blank" rel="noreferrer">Ahold Delhaize</a>'s US-based grocery store chains: <a href="https://stopandshop.com" target="_blank" rel="noreferrer">Stop & Shop</a>, <a href="https://martinsfoods.com/" target="_blank" rel="noreferrer">Martin's</a>, <a href="https://giantfood.com/" target="_blank" rel="noreferrer">Giant Food</a>, and <a href="https://giantfoodstores.com/" target="_blank" rel="noreferrer">Giant Food Stores</a>. I joined the Cart & Checkout team in January 2021 and quickly integrated into their scrum workflow, contributing front-end solutions to improve user navigation and site reliability.</p>,
+        name: "Peapod Digital Labs",
+        blurb: <p className="blurb">My work at Peapod Digital Labs focused on their Prism app, an omnichannel platform for <a href="https://www.aholddelhaize.com/en/home/" target="_blank" rel="noreferrer">Ahold Delhaize</a>'s US-based grocery store chains: <a href="https://stopandshop.com" target="_blank" rel="noreferrer">Stop & Shop</a>, <a href="https://martinsfoods.com/" target="_blank" rel="noreferrer">Martin's</a>, <a href="https://giantfood.com/" target="_blank" rel="noreferrer">Giant Food</a>, and <a href="https://giantfoodstores.com/" target="_blank" rel="noreferrer">Giant Food Stores</a>. I joined the Cart & Checkout team in January 2021 and quickly integrated into their scrum workflow, contributing front-end solutions to improve user navigation and site reliability.</p>,
         landingPage: props.data.Prism_STSH_CartPage.childImageSharp.fluid,
         selectionPage: props.data.Prism_STSH_OrderSummaryPage.childImageSharp.fluid,
         detailPage: props.data.Prism_GNTL_CartPage.childImageSharp.fluid,
@@ -22,7 +22,7 @@ export default function Prism(props) {
     };
 
     return (
-        <Layout pageTitle="PRISM Platform">
+        <Layout pageTitle="Peapod Digital Labs">
             <ProjectBanner selProject={prism}/>
 
             <ProjectPresentation project={prism} />

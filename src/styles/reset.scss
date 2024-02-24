@@ -673,10 +673,10 @@ html {
   margin: 2em;
   margin-bottom: 8rem;
   font-family: Alata;
-  background: linear-gradient(rgb(240, 241, 171), rgb(229, 217, 245));
+  background: linear-gradient(rgba(229, 217, 245, 0.249), rgb(229, 217, 245));
+  border: 1px solid rgba(107, 107, 107, 0.534);
   border-radius: 15px;
   padding: 2em 2em 1em 2em;
-  box-shadow: 1px -4px 88px -41px rgba(0,0,0,0.75);
 }
 
 .project-functionalities h2 {
