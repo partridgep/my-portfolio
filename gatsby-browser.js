@@ -1,14 +1,14 @@
 // const React = require("react")
-// const Layout = require("./src/components/layout")
+// const Layout = require("./src/components/Layout")
 // require("typeface-alata")
 
-// // Logs when the client route changes
+// Logs when the client route changes
 // exports.onRouteUpdate = ({ location, prevLocation }) => {
 //   console.log("new pathname", location.pathname)
 //   console.log("old pathname", prevLocation ? prevLocation.pathname : null)
 // }
 
-// // Wraps every page in a component
+// Wraps every page in a component
 // exports.wrapPageElement = ({ element, props }) => {
 //   return <Layout {...props}>{element}</Layout>
 // }
