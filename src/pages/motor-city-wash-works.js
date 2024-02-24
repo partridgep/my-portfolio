@@ -14,8 +14,8 @@ export default function MotorCityWashWorks(props) {
         landingPage: props.data.MCWW_dashboard.childImageSharp.fluid,
         selectionPage: props.data.MCWW_all_WO.childImageSharp.fluid,
         detailPage: props.data.MCWW_active_WO.childImageSharp.fluid,
-        loginPage: props.data.MCWW_chem.childImageSharp.fluid,
-        userPage: null,
+        loginPage: props.data.MCWW_active_WO_modal.childImageSharp.fluid,
+        userPage: props.data.MCWW_chem.childImageSharp.fluid,
         addPage: props.data.MCWW_thresholds.childImageSharp.fluid,
         addPage2: props.data.MCWW_permissions.childImageSharp.fluid,
         technologies: ['Vue.js', 'Tailwind', 'JS', 'HTML']
@@ -33,7 +33,7 @@ export default function MotorCityWashWorks(props) {
 
 export const pageQuery = graphql`
   query {
-    MCWW_active_dashboard: file(relativePath: { eq: "MCWW_active_dashboard.jpg" }) {
+    MCWW_dashboard: file(relativePath: { eq: "MCWW_dashboard.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 4000) {
           ...GatsbyImageSharpFluid
@@ -41,6 +41,13 @@ export const pageQuery = graphql`
       }
     }
     MCWW_active_WO: file(relativePath: { eq: "MCWW_active_WO.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 4000) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    MCWW_active_WO_modal: file(relativePath: { eq: "MCWW_active_WO_modal.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 4000) {
             ...GatsbyImageSharpFluid

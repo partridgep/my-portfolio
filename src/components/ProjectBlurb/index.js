@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faWindowMaximize } from '@fortawesome/free-solid-svg-icons'
+// import { faWindowMaximize } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './ProjectBlurb.module.scss'
 
