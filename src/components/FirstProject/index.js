@@ -29,6 +29,7 @@ export default function FirstProject({project, mainScreenshot, secondaryScreensh
                 trigger: "#firstProjectWrapper",
                 scrub: true,
                 start: "bottom 50%",
+                // markers: true
             }
         });
         gsap.to("#project_1_text", {

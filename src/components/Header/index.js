@@ -1,8 +1,6 @@
 import React from "react"
 import {Link} from "gatsby"
 
-import { navigate } from "@reach/router";
-
 import setFrameIndex from '../../utils/sectionLinks'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -13,6 +11,8 @@ import styles from './Header.module.scss'
 export default function Header({ title, size}) {
     
     useGSAP(() => {
+
+        if (size === "small") return
 
         gsap.to("#header",
             {
@@ -53,30 +53,20 @@ export default function Header({ title, size}) {
 
         let mm = gsap.matchMedia();
 
-        mm.add("(max-width: 799px)", () => {
+        mm.add("(max-width: 831px)", () => {
 
-            gsap.fromTo("#title_container_big",
-                {
-                    xPercent: -50,
-                    scrollTrigger: {
-                        trigger: "#project1",
-                        scrub: true,
-                        start: "bottom 97%",
-                        toggleActions: "restart pause reverse pause"
-                    },
-                },
-                {
-                    scale: 0.5,
-                    yPercent: -22,
-                    xPercent: -80,
-                    scrollTrigger: {
-                        trigger: "#project1",
-                        scrub: true,
-                        start: "bottom 97%",
-                        toggleActions: "restart pause reverse pause"
-                    }
+            gsap.to("#title_container_big", {
+                scale: 0.5,
+                yPercent: -22,
+                xPercent: -0,
+                x: "-30vw",
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 97%",
+                    toggleActions: "restart pause reverse pause"
                 }
-            );
+            });
             gsap.to(".reappearNav", {
                 opacity: 1,
                 display: "block",
@@ -88,7 +78,7 @@ export default function Header({ title, size}) {
                 },
             });
         });
-        mm.add("(min-width: 800px)", () => {
+        mm.add("(min-width: 832px)", () => {
             gsap.to(".reappearNav", {
                 opacity: 1,
                 display: "block",
@@ -101,49 +91,29 @@ export default function Header({ title, size}) {
                 },
             });
         });
-        mm.add("(min-width: 800px) and (max-width: 1199px)", () => {
+        mm.add("(min-width: 832px) and (max-width: 1199px)", () => {
 
-            gsap.fromTo("#title_container_big",
-                {
-                    xPercent: -50,
-                    scrollTrigger: {
-                        trigger: "#project1",
-                        scrub: true,
-                        start: "bottom 97%",
-                        toggleActions: "restart pause reverse pause"
-                    }
-                },
-                {
-                    scale: 0.5,
-                    yPercent: -18.5,
-                    xPercent: 0,
-                    x: "-60vw",
-                    scrollTrigger: {
-                        trigger: "#project1",
-                        scrub: true,
-                        start: "bottom 97%",
-                        toggleActions: "restart pause reverse pause"
-                    }
+            gsap.to("#title_container_big", {
+                scale: 0.5,
+                yPercent: -18.5,
+                xPercent: 0,
+                x: "-33vw",
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 97%",
+                    toggleActions: "restart pause reverse pause"
                 }
-            );
+            });
         });
         mm.add("(min-width: 1200px) and (max-width: 2499px)", () => {
 
-            gsap.fromTo("#title_container_big",
-                {
-                    xPercent: -50,
-                    scrollTrigger: {
-                        trigger: "#project1",
-                        scrub: true,
-                        start: "bottom 97%",
-                        toggleActions: "restart pause reverse pause"
-                    }
-                },
+            gsap.to("#title_container_big",
                 {
                     scale: 0.5,
                     yPercent: -18.5,
                     xPercent: 0,
-                    x: "-55vw",
+                    x: "-36vw",
                     scrollTrigger: {
                         trigger: "#project1",
                         scrub: true,
@@ -154,21 +124,12 @@ export default function Header({ title, size}) {
         });
         mm.add("(min-width: 2500px)", () => {
 
-            gsap.fromTo("#title_container_big",
-                {
-                    xPercent: -50,
-                    scrollTrigger: {
-                        trigger: "#project1",
-                        scrub: true,
-                        start: "bottom 97%",
-                        toggleActions: "restart pause reverse pause"
-                    }
-                },
+            gsap.to("#title_container_big",
                 {
                     scale: 0.5,
                     yPercent: -18.5,
                     xPercent: 0,
-                    x: "-45vw",
+                    x: "-38vw",
                     scrollTrigger: {
                         trigger: "#project1",
                         scrub: true,

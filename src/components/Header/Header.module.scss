@@ -23,6 +23,7 @@
     div {
         max-width: 600px;
         cursor: pointer;
+        z-index: 1;
     }
 
     h1 {
@@ -131,11 +132,6 @@
 
 .big {
 
-    div {
-        margin: 0 auto 0 50%;
-        transform: translateX(-50%);
-    }
-
     h1 {
         animation: elongate 2s; 
     }
@@ -152,8 +148,6 @@
     height: 115px;
 
     .linkHome {
-        margin: 0 auto 0 21%;
-        transform: translate(-50%, -18.5%) scale(0.5, 0.5);
         text-decoration: none;
     }
 
@@ -272,8 +266,7 @@
         height: 70px;
 
         .linkHome {
-            margin: 0 auto 0 50%;
-            transform: translate(-80%, -22%) scale(0.5, 0.5);
+            transform: translate(-30vw, -22%) scale(0.5, 0.5);
         }
 
         nav {
@@ -312,5 +305,21 @@
             }
         }
 
+    }
+}
+
+@media(min-width: 832px) and (max-width: 1199px) {
+    .linkHome {
+        transform: translate(-33vw, -18.5%) scale(0.5, 0.5);
+    }
+}
+@media(min-width: 1200px) and (max-width: 2499px) {
+    .linkHome {
+        transform: translate(-36vw, -18.5%) scale(0.5, 0.5);
+    }
+}
+@media(min-width: 2500px) {
+    .linkHome {
+        transform: translate(-38vw, -18.5%) scale(0.5, 0.5);
     }
 }

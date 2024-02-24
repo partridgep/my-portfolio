@@ -1,9 +1,21 @@
 .firstProjectWrapper {
     position: sticky;
-    top: 10vh;
+    top: 5vh;
     opacity: 0;
 }
 
+@media(min-width: 832px) {
+    .firstProjectWrapper {
+        top: 10vh;
+    }
+}
+
 .postFirstBuffer {
-    height: 110vh;
+    height: 105vh;
+}
+
+@media(min-width: 832px) {
+    .postFirstBuffer {
+        height: 110vh;
+    }
 }
