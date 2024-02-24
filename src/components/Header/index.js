@@ -68,7 +68,7 @@ export default function Header({ title, size}) {
                 }
             });
             gsap.to(".reappearNav", {
-                opacity: 1,
+                opacity: "100%",
                 display: "block",
                 scrollTrigger: {
                     trigger: "#project1",
@@ -80,7 +80,7 @@ export default function Header({ title, size}) {
         });
         mm.add("(min-width: 832px)", () => {
             gsap.to(".reappearNav", {
-                opacity: 1,
+                opacity: "100%",
                 display: "block",
                 scrollTrigger: {
                     trigger: "#project1",
