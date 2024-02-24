@@ -24,7 +24,7 @@ export default function FirstProject({project, mainScreenshot, secondaryScreensh
             },
         });
         gsap.to("#firstProjectWrapper", {
-            opacity: 1,
+            opacity: "100%",
             scrollTrigger: {
                 trigger: "#firstProjectWrapper",
                 scrub: true,
