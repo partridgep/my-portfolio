@@ -11,7 +11,11 @@ export default function Head({title, keywords, pageTitle}) {
                 `${title}`
             }
             meta={[
-                {name: "keywords", content: keywords}
+                {name: "keywords", content: keywords},
+                {
+                    name: `theme-color`,
+                    content: '#FFEA80',
+                  },
             ]}
         />
     )
