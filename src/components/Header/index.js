@@ -26,31 +26,6 @@ export default function Header({ title, size}) {
             },
         );
 
-        gsap.to("#subtitle", {
-            opacity: 0,
-            display: "none",
-            scrollTrigger: {
-                trigger: "#project1",
-                scrub: true,
-                start: "bottom 97%",
-                end: "+=10%",
-                // markers: true
-            }
-        });
-        gsap.to(".mainNav", 
-            {
-                display: "none",
-                opacity: 0,
-                scrollTrigger: {
-                    trigger: "#project1",
-                    scrub: true,
-                    start: "bottom 97%",
-                    end: "+=9%",
-                    // markers: true
-                }
-            },
-        );
-
         let mm = gsap.matchMedia();
 
         mm.add("(max-width: 831px)", () => {
@@ -64,11 +39,35 @@ export default function Header({ title, size}) {
                     trigger: "#project1",
                     scrub: true,
                     start: "bottom 97%",
-                    toggleActions: "restart pause reverse pause"
+                    toggleActions: "restart pause reverse pause",
                 }
             });
+            gsap.to("#subtitle", {
+                opacity: 0,
+                display: "none",
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 90%",
+                    end: "+=10%",
+                    // markers: true
+                }
+            });
+            gsap.to(".mainNav", 
+            {
+                display: "none",
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 90%",
+                    end: "+=9%",
+                    // markers: true
+                }
+            },
+        );
             gsap.to(".reappearNav", {
-                opacity: 100,
+                opacity: 1,
                 display: "block",
                 scrollTrigger: {
                     trigger: "#project1",
@@ -79,8 +78,30 @@ export default function Header({ title, size}) {
             });
         });
         mm.add("(min-width: 832px)", () => {
+            gsap.to("#subtitle", {
+            opacity: 0,
+            display: "none",
+            scrollTrigger: {
+                trigger: "#project1",
+                scrub: true,
+                start: "bottom 97%",
+                end: "+=10%",
+                // markers: true
+                }
+            });
+            gsap.to(".mainNav", {
+                display: "none",
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: "#project1",
+                    scrub: true,
+                    start: "bottom 97%",
+                    end: "+=9%",
+                    // markers: true
+                }
+            });
             gsap.to(".reappearNav", {
-                opacity: 100,
+                opacity: 1,
                 display: "block",
                 scrollTrigger: {
                     trigger: "#project1",

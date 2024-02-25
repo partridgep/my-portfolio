@@ -16,7 +16,7 @@ export default function FirstProject({project, mainScreenshot, secondaryScreensh
                 trigger: "#firstProjectWrapper",
                 start: "bottom 60%",
                 snap: (_, self) => {
-                    if (self.direction && self.direction > 0) {
+                    if (self.direction) {
                       return 1;
                     }
                   },
@@ -24,7 +24,7 @@ export default function FirstProject({project, mainScreenshot, secondaryScreensh
             },
         });
         gsap.to("#firstProjectWrapper", {
-            opacity: "100%",
+            opacity: 1,
             scrollTrigger: {
                 trigger: "#firstProjectWrapper",
                 scrub: true,
